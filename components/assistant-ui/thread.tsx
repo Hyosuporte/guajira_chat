@@ -5,12 +5,11 @@ import {
   ActionBarPrimitive,
   BranchPickerPrimitive,
   ErrorPrimitive,
-} from "@assistant-ui/react";
-import type { FC } from "react";
+} from '@assistant-ui/react';
+import type { FC } from 'react';
 import {
   ArrowDownIcon,
   ArrowUpIcon,
-  PlusIcon,
   CopyIcon,
   CheckIcon,
   PencilIcon,
@@ -18,14 +17,14 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   Square,
-} from "lucide-react";
+} from 'lucide-react';
 
-import { TooltipIconButton } from "@/components/assistant-ui/tooltip-icon-button";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { MarkdownText } from "./markdown-text";
-import { ToolFallback } from "./tool-fallback";
+import { TooltipIconButton } from '@/components/assistant-ui/tooltip-icon-button';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { MarkdownText } from './markdown-text';
+import { ToolFallback } from './tool-fallback';
 
 export const Thread: FC = () => {
   return (
@@ -33,8 +32,8 @@ export const Thread: FC = () => {
       // aui-thread-root
       className="bg-background flex h-full flex-col"
       style={{
-        ["--thread-max-width" as string]: "48rem",
-        ["--thread-padding-x" as string]: "1rem",
+        ['--thread-max-width' as string]: '48rem',
+        ['--thread-padding-x' as string]: '1rem',
       }}
     >
       {/* aui-thread-viewport */}
@@ -92,7 +91,7 @@ const ThreadWelcome: FC = () => {
               // aui-thread-welcome-message-motion-1
               className="text-2xl font-semibold"
             >
-              Hello there!
+              Hola!
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -102,71 +101,13 @@ const ThreadWelcome: FC = () => {
               // aui-thread-welcome-message-motion-2
               className="text-muted-foreground/65 text-2xl"
             >
-              How can I help you today?
+              ¿En qué puedo ayudarle hoy?
             </motion.div>
           </div>
         </div>
       </div>
+      <br />
     </ThreadPrimitive.Empty>
-  );
-};
-
-const ThreadWelcomeSuggestions: FC = () => {
-  return (
-    // aui-thread-welcome-suggestions
-    <div className="grid w-full gap-2 sm:grid-cols-2">
-      {[
-        {
-          title: "What are the advantages",
-          label: "of using Assistant Cloud?",
-          action: "What are the advantages of using Assistant Cloud?",
-        },
-        {
-          title: "Write code to",
-          label: `demonstrate topological sorting`,
-          action: `Write code to demonstrate topological sorting`,
-        },
-        {
-          title: "Help me write an essay",
-          label: `about AI chat applications`,
-          action: `Help me write an essay about AI chat applications`,
-        },
-        {
-          title: "What is the weather",
-          label: "in San Francisco?",
-          action: "What is the weather in San Francisco?",
-        },
-      ].map((suggestedAction, index) => (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ delay: 0.05 * index }}
-          key={`suggested-action-${suggestedAction.title}-${index}`}
-          // aui-thread-welcome-suggestion-display
-          className="[&:nth-child(n+3)]:hidden sm:[&:nth-child(n+3)]:block"
-        >
-          <ThreadPrimitive.Suggestion
-            prompt={suggestedAction.action}
-            method="replace"
-            autoSend
-            asChild
-          >
-            <Button
-              variant="ghost"
-              // aui-thread-welcome-suggestion
-              className="dark:hover:bg-accent/60 h-auto w-full flex-1 flex-wrap items-start justify-start gap-1 rounded-xl border px-4 py-3.5 text-left text-sm sm:flex-col"
-              aria-label={suggestedAction.action}
-            >
-              {/* aui-thread-welcome-suggestion-text-1 */}
-              <span className="font-medium">{suggestedAction.title}</span>
-              {/* aui-thread-welcome-suggestion-text-2 */}
-              <p className="text-muted-foreground">{suggestedAction.label}</p>
-            </Button>
-          </ThreadPrimitive.Suggestion>
-        </motion.div>
-      ))}
-    </div>
   );
 };
 
@@ -175,16 +116,14 @@ const Composer: FC = () => {
     // aui-composer-wrapper
     <div className="bg-background relative mx-auto flex w-full max-w-[var(--thread-max-width)] flex-col gap-4 px-[var(--thread-padding-x)] pb-4 md:pb-6">
       <ThreadScrollToBottom />
-      <ThreadPrimitive.Empty>
-        <ThreadWelcomeSuggestions />
-      </ThreadPrimitive.Empty>
+      <ThreadPrimitive.Empty></ThreadPrimitive.Empty>
       {/* aui-composer-root */}
       <ComposerPrimitive.Root className="focus-within::ring-offset-2 relative flex w-full flex-col rounded-2xl focus-within:ring-2 focus-within:ring-black dark:focus-within:ring-white">
         {/* aui-composer-input */}
         <ComposerPrimitive.Input
-          placeholder="Send a message..."
+          placeholder="Enviar un mensage..."
           className={
-            "bg-muted border-border dark:border-muted-foreground/15 focus:outline-primary placeholder:text-muted-foreground max-h-[calc(50dvh)] min-h-16 w-full resize-none rounded-t-2xl border-x border-t px-4 pt-2 pb-3 text-base outline-none"
+            'bg-muted border-border dark:border-muted-foreground/15 focus:outline-primary placeholder:text-muted-foreground max-h-[calc(50dvh)] min-h-16 w-full resize-none rounded-t-2xl border-x border-t px-4 pt-2 pb-3 text-base outline-none'
           }
           rows={1}
           autoFocus
@@ -199,19 +138,7 @@ const Composer: FC = () => {
 const ComposerAction: FC = () => {
   return (
     // aui-composer-action-wrapper
-    <div className="bg-muted border-border dark:border-muted-foreground/15 relative flex items-center justify-between rounded-b-2xl border-x border-b p-2">
-      <TooltipIconButton
-        tooltip="Attach file"
-        variant="ghost"
-        // aui-composer-attachment-button
-        className="hover:bg-foreground/15 dark:hover:bg-background/50 scale-115 p-3.5"
-        onClick={() => {
-          console.log("Attachment clicked - not implemented");
-        }}
-      >
-        <PlusIcon />
-      </TooltipIconButton>
-
+    <div className="bg-muted border-border dark:border-muted-foreground/15 relative flex  rounded-b-2xl border-x border-b p-2">
       <ThreadPrimitive.If running={false}>
         <ComposerPrimitive.Send asChild>
           <Button
@@ -277,7 +204,9 @@ const AssistantMessage: FC = () => {
           <MessagePrimitive.Content
             components={{
               Text: MarkdownText,
-              tools: { Fallback: ToolFallback },
+              tools: {
+                Fallback: ToolFallback,
+              },
             }}
           />
           <MessageError />
@@ -400,7 +329,7 @@ const BranchPicker: FC<BranchPickerPrimitive.Root.Props> = ({
       hideWhenSingleBranch
       // aui-branch-picker-root
       className={cn(
-        "text-muted-foreground inline-flex items-center text-xs",
+        'text-muted-foreground inline-flex items-center text-xs',
         className,
       )}
       {...rest}
