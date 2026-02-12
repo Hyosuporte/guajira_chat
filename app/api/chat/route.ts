@@ -33,7 +33,7 @@ export async function POST(req: Request) {
         'Formato de salida:' +
         '- Un párrafo breve y bien estructurado en español, usando únicamente la información encontrada en los documentos. ' +
         '- Si la información no es suficiente, indícalo explícitamente como se indicó arriba.',
-    maxOutputTokens: 150,
+    maxOutputTokens: 550,
     tools: {
       ...frontendTools(tools),
       file_search: fileSearchTool,
