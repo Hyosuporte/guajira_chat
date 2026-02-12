@@ -123,7 +123,7 @@ const ExcelReportCard: FC<{ content: ExcelReport }> = ({ content }) => {
   );
 };
 
-const TextWrapper: FC<{ children: string }> = ({ children }) => {
+const TextWrapper: FC<{ children: any }> = ({ children }) => {
   const excelData = parseExcelData(children);
 
   if (excelData) {
