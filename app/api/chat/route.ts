@@ -2,7 +2,7 @@ import { fileSearchTool } from '@/app/lib/ai/tools';
 import { openai } from '@ai-sdk/openai';
 import { frontendTools } from '@assistant-ui/react-ai-sdk';
 import { streamText, UIMessage, convertToModelMessages, stepCountIs } from 'ai';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export async function POST(req: Request) {
   const {
     messages,
