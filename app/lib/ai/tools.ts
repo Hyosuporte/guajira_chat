@@ -222,8 +222,8 @@ const generateToExcel = tool({
 export {
   fileSearchTool,
   fileSearchToolGua,
-  searchDatabaseViews,
+  /*   searchDatabaseViews,
   runGenerateSQLQuery,
   generateToExcel,
-  excelCache,
+  excelCache, */
 };
