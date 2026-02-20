@@ -11,6 +11,7 @@ export default function Home() {
   return (
     <AssistantRuntimeProvider runtime={runtime}>
       <Thread />
+      <AssistantWidget apiUrl="/api/chat" />
     </AssistantRuntimeProvider>
   );
 }
