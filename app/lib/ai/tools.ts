@@ -63,9 +63,13 @@ const fileSearchToolGua = tool({
 >({
   max: 50,
   ttl: 1000 * 60 * 10, // 5 minutos
+<<<<<<< HEAD
 }); */
 
 /* const searchDatabaseViews = tool({
+});
+
+const searchDatabaseViews = tool({
   description:
     'Realiza una búsqueda semántica para encontrar las vistas de base de datos más relevantes basadas en la intención del usuario. Útil para entender qué tablas o vistas consultar antes de generar SQL.',
   inputSchema: z.object({
