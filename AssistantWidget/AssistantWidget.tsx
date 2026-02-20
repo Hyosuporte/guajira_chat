@@ -1,4 +1,4 @@
-/* import { AssistantModal } from '@/components/assistant-modal'; */
+import { AssistantModal } from '@/components/assistant-modal';
 import { AssistantRuntimeProvider } from '@assistant-ui/react';
 import { AssistantChatTransport } from '@assistant-ui/react-ai-sdk';
 import { useChatRuntime } from '@assistant-ui/react-ai-sdk';
@@ -17,7 +17,7 @@ export default function AssistantWidget({ apiUrl }: AssistantWidgetProps) {
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
-      {/* <AssistantModal /> */}
+      <AssistantModal />
     </AssistantRuntimeProvider>
   );
 }

@@ -11,7 +11,10 @@ export default function Home() {
   return (
     <AssistantRuntimeProvider runtime={runtime}>
       <Thread />
-      <AssistantWidget />
+
+      {/*   <AssistantWidget apiUrl="http://localhost:3000/api/chat/" /> */}
+      <assistant-widget api-url="http://localhost:3000/api/chat/"></assistant-widget>
+      <script src="http://localhost:3000/widget.js" async></script>
     </AssistantRuntimeProvider>
   );
 }

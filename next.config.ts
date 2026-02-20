@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'http://localhost:4000/',
+            value: process.env.ASSISTANT_BASE_URL || '',
           },
           {
             key: 'Access-Control-Allow-Methods',
@@ -26,12 +26,12 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'http://localhost:4000',
+            value: process.env.ASSISTANT_BASE_URL || '',
           },
-          { key: 'Access-Control-Allow-Methods', value: 'GET,POST' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,POST,OPTIONS' },
           {
             key: 'Access-Control-Allow-Headers',
-            value: 'Content-Type, Authorization',
+            value: 'Content-Type, Authorization, User-Agent',
           },
         ],
       },
@@ -40,9 +40,9 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'http://localhost:4000',
+            value: process.env.ASSISTANT_BASE_URL || '',
           },
-          { key: 'Access-Control-Allow-Methods', value: 'GET,POST' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,POST,OPTIONS' },
           {
             key: 'Access-Control-Allow-Headers',
             value: 'Content-Type, Authorization',
