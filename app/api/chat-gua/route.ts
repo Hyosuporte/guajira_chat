@@ -1,11 +1,4 @@
-import {
-  runGenerateSQLQuery,
-  searchDatabaseViews,
-  generateToExcel,
-  excelCache,
-} from '@/app/lib/ai/tools';
 import { openai } from '@ai-sdk/openai';
-import { frontendTools } from '@assistant-ui/react-ai-sdk';
 import { streamText, UIMessage, convertToModelMessages, stepCountIs } from 'ai';
 
 export async function POST(req: Request) {
@@ -76,12 +69,7 @@ export async function POST(req: Request) {
 
       Tu única función en este punto es tomar el JSON que recibes de la herramienta y devolverlo directamente. El sistema se encargará del resto.`,
     maxOutputTokens: 650,
-    tools: {
-      ...frontendTools(tools),
-      searchDatabaseViews: searchDatabaseViews,
-      runGenerateSQLQuery: runGenerateSQLQuery,
-      generateToExcel: generateToExcel,
-    },
+    tools: {},
     messages: convertToModelMessages(messages),
     temperature: 0,
     stopWhen: stepCountIs(15),
