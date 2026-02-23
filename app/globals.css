@@ -42,7 +42,6 @@
   --color-blue-700: #3750a2;
 }
 
-/* Modo Claro (Normal) */
 :root,
 :host,
 assistant-widget {
@@ -94,11 +93,6 @@ assistant-widget {
     color-scheme: dark;
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
-
-  /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 12px;
   }
