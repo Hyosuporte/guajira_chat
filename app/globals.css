@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @source "../components/**/*.{ts,tsx}";
 @source "../AssistantWidget/**/*.{ts,tsx}";
@@ -36,7 +36,6 @@
   --radius-sm: calc(var(--radius) - 4px);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* SECUESTRO DE AZULES: Forzar que cualquier azul de Tailwind use tu color corporativo */
   --color-blue-400: #3750a2;
   --color-blue-500: #3750a2;
   --color-blue-600: #3750a2;
@@ -44,7 +43,9 @@
 }
 
 /* Modo Claro (Normal) */
-:root, :host, assistant-widget {
+:root,
+:host,
+assistant-widget {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
@@ -52,11 +53,10 @@
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  
-  /* TU AZUL CORPORATIVO */
+
   --primary: #3750a2;
   --primary-foreground: oklch(0.985 0 0);
-  
+
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.967 0.001 286.375);
@@ -67,43 +67,14 @@
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: #3750a2;
-
-  /* Forzar a la librería a usar tu azul */
   --aui-primary: var(--primary);
   --aui-accent: var(--primary);
   --aui-button-background: var(--primary);
 }
 
-/* Modo Oscuro */
-.dark, :host(.dark), assistant-widget.dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  
-  /* Azul un poco más claro para el modo oscuro para que sea legible */
-  --primary: #4a68c1; 
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: #4a68c1;
-
-  --aui-primary: var(--primary);
-  --aui-accent: var(--primary);
-}
-
 @layer base {
-  :host, assistant-widget {
+  :host,
+  assistant-widget {
     display: block;
   }
 
@@ -111,11 +82,15 @@
     @apply border-border outline-ring/50;
   }
 
-  :root, :host, assistant-widget {
+  :root,
+  :host,
+  assistant-widget {
     color-scheme: light;
   }
 
-  :root.dark, :host.dark, assistant-widget.dark {
+  :root.dark,
+  :host.dark,
+  assistant-widget.dark {
     color-scheme: dark;
   }
 
@@ -139,7 +114,6 @@
     @apply bg-muted-foreground/30;
   }
 
-  /* Firefox only scrollbar styling */
   @-moz-document url-prefix() {
     * {
       scrollbar-color: oklch(0.552 0.016 285.938 / 25%) transparent;
