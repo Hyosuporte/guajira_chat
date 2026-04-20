@@ -1,98 +1,125 @@
+# Assistant UI - Backend (Servicios de Auditoría e IA de Nómina)
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Descripción
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este es el backend de **Assistant UI**, un ecosistema basado en NestJS diseñado para la **Auditoría de Nómina** y consultas de base de datos mediante **Inteligencia Artificial**. El sistema permite a los usuarios realizar preguntas en lenguaje natural sobre la base de datos `GUAJIRA2021_PROD`, generar reportes en Excel y auditar procesos de nómina colombiana (Sueldos, Salud, Pensión, Subsidios y Retroactivos) con el apoyo de modelos de OpenAI.
 
-## Description
+## Tecnologías Principales
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Framework:** [NestJS](https://github.com/nestjs/nest) (Node.js)
+- **Base de Datos:** PostgreSQL (con extensión `pgvector` para embeddings)
+- **IA SDK:** [Vercel AI SDK](https://sdk.vercel.ai/docs) con OpenAI (`gpt-4o-mini`, `o3-mini`)
+- **Embeddings:** [FastEmbed](https://github.com/qdrant/fastembed-js) (Local BGE-Small-EN)
+- **Documentación:** Swagger UI
+- **Reportes:** `xlsx-populate` para generación dinámica de archivos Excel.
 
-## Project setup
+## Características Principales
 
+1.  **Chat con IA (SQL Agent):**
+    - Consultas a la base de datos en lenguaje natural.
+    - Generación automática de SQL y visualización de resultados.
+    - Exportación de resultados directamente a Excel.
+    - Búsqueda semántica de tablas y vistas usando embeddings locales.
+2.  **Módulo de Auditoría de Nómina:**
+    - Validación legal de topes (Transporte, Alimentación, FSP).
+    - Detección de errores matemáticos en Salud y Pensión.
+    - Análisis de variaciones inusuales en sueldos netos.
+    - Detección de novedades omitidas (Préstamos, Licencias, Embargos, Primas).
+3.  **Auditoría de Retroactivos:**
+    - Cálculo y validación de retroactivos salariales (7% legal).
+    - Recálculo de doceavas de vacaciones y bonificaciones.
+4.  **Informes Generados por IA:**
+    - Generación de resúmenes profesionales de hallazgos de auditoría por empleado usando LLMs.
+
+---
+
+## Requisitos Previos
+
+- **Node.js:** >= 20.x
+- **pnpm:** Instalado globalmente (`npm install -g pnpm`)
+- **PostgreSQL:** Con la extensión `pgvector` habilitada.
+- **OpenAI API Key:** Para los servicios de procesamiento de lenguaje natural.
+
+---
+
+## Configuración e Instalación
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone <url-del-repositorio>
+    cd assistant-ui
+    ```
+
+2.  **Instalar dependencias:**
+    ```bash
+    pnpm install
+    ```
+
+3.  **Configurar variables de entorno:**
+    Copia el archivo `.env.example` a `.env` y completa los valores requeridos:
+    ```bash
+    cp .env.example .env
+    ```
+
+---
+
+## Ejecución
+
+### Desarrollo
 ```bash
-$ pnpm install
+# Modo watch (recarga automática)
+$ pnpm run start:dev
 ```
 
-## Compile and run the project
-
+### Producción
 ```bash
-# development
-$ pnpm run start
+# Construir el proyecto
+$ pnpm run build
 
-# watch mode
-$ pnpm run start:dev
-
-# production mode
+# Ejecutar la versión compilada
 $ pnpm run start:prod
 ```
 
-## Run tests
-
+### Pruebas (Tests)
 ```bash
-# unit tests
+# Unitarios
 $ pnpm run test
 
-# e2e tests
+# End-to-end (e2e)
 $ pnpm run test:e2e
 
-# test coverage
+# Cobertura
 $ pnpm run test:cov
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Documentación de la API
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Una vez que el servidor esté en ejecución, puedes acceder a la documentación interactiva de Swagger en:
 
-```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+`http://localhost:3000/docs`
+
+---
+
+## Estructura del Proyecto
+
+```text
+src/
+├── audit/          # Lógica de auditoría de nómina (hallazgos, retroactivos, reportes IA)
+├── chat/           # Motor de chat con IA y herramientas de generación de SQL/Excel
+├── common/         # Módulos compartidos (Conexión a base de datos PostgreSQL)
+├── embeddings/     # Servicio de búsqueda semántica con FastEmbed
+├── main.ts         # Punto de entrada de la aplicación
+└── app.module.ts   # Módulo principal
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## Licencia
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Este proyecto es software privado y no tiene licencia de código abierto definida (`UNLICENSED`).
