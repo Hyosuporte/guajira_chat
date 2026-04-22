@@ -1,6 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class AuditPayrollDto {
+  @ApiProperty({ description: 'Esquema de la base de datos del cliente' })
+  schema: string;
+
   @ApiProperty({ description: 'ID del calendario a auditar' })
   calId: number;
 

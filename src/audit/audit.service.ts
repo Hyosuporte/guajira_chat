@@ -21,9 +21,6 @@ export interface PayrollAuditResult {
 export class AuditService implements OnModuleInit {
   constructor(private readonly db: DatabaseService) {}
 
-  private TopesFSP: any[] = [];
-  private diccionarioConceptos: Record<number, string> = {};
-
   private readonly CONSTANTES_LEY = {
     SMMLV: 1750905,
     TOPE_TRANSPORTE: 3501810,
@@ -33,30 +30,29 @@ export class AuditService implements OnModuleInit {
   };
 
   async onModuleInit() {
-    try {
-      await this.loadTopesFSP();
-      await this.loadDiccionario();
-    } catch (error) {
-      console.error('Error al inicializar datos de auditoría:', error.message);
-    }
+    // Initialization depends on client, so it's handled per request
   }
 
-  private async loadTopesFSP(): Promise<void> {
-    const queryTopes = `SELECT * FROM "SIAN2022".tope_ley100`;
-    const result = await this.db.query(queryTopes);
-    this.TopesFSP = result.rows;
+  private async loadTopesFSP(clientKey: string): Promise<any[]> {
+    const queryTopes = `SELECT * FROM tope_ley100`;
+    const result = await this.db.query(queryTopes, [], clientKey);
+    return result.rows;
   }
 
-  private async loadDiccionario(): Promise<void> {
-    const queryDiccionario = `SELECT con_codigo, con_nombre FROM "SIAN2022".concepto`;
-    const result = await this.db.query(queryDiccionario);
+  private async loadDiccionario(
+    clientKey: string,
+  ): Promise<Record<number, string>> {
+    const queryDiccionario = `SELECT con_codigo, con_nombre FROM concepto`;
+    const result = await this.db.query(queryDiccionario, [], clientKey);
+    const dic: Record<number, string> = {};
     for (const concepto of result.rows) {
-      this.diccionarioConceptos[concepto.con_codigo] = concepto.con_nombre;
+      dic[concepto.con_codigo] = concepto.con_nombre;
     }
+    return dic;
   }
 
-  private obtenerPorcentajesFSP(ibc: number): number {
-    for (const tope of this.TopesFSP) {
+  private obtenerPorcentajesFSP(topes: any[], ibc: number): number {
+    for (const tope of topes) {
       const topeMin = Number(tope.valor_min);
       const topeMax = Number(tope.valor_max);
       const porcentaje = Number(tope.porc_descuento);
@@ -68,7 +64,11 @@ export class AuditService implements OnModuleInit {
     return 0;
   }
 
-  async getValidadorLegal(calId: number): Promise<AuditIncidency[]> {
+  async getValidadorLegal(
+    clientKey: string,
+    calId: number,
+  ): Promise<AuditIncidency[]> {
+    const topesFSP = await this.loadTopesFSP(clientKey);
     const querySubsidios = `WITH ResumenMes AS (
         SELECT 
             emp_cedula,
@@ -79,13 +79,13 @@ export class AuditService implements OnModuleInit {
             SUM(CASE WHEN con_codigo IN (7200, 7201) THEN liq_valor_concepto ELSE 0 END) AS salud_empleado,
             SUM(CASE WHEN con_codigo IN (5200, 5201, 5202) THEN liq_valor_concepto ELSE 0 END) AS pension_empleado,
             SUM(CASE WHEN con_codigo IN (6200) THEN liq_valor_concepto ELSE 0 END) AS fondo_solidaridad
-        FROM "SIAN2022".conceliq
+        FROM conceliq
         WHERE cal_id = $1
         GROUP BY emp_cedula
     )
     SELECT * FROM ResumenMes WHERE sueldo_base > 0;`;
 
-    const { rows } = await this.db.query(querySubsidios, [calId]);
+    const { rows } = await this.db.query(querySubsidios, [calId], clientKey);
     const erroresLey: AuditIncidency[] = [];
 
     for (const item of rows) {
@@ -177,7 +177,10 @@ export class AuditService implements OnModuleInit {
           });
         }
 
-        const porcentajeLeyFSP = this.obtenerPorcentajesFSP(ibcRedondeado);
+        const porcentajeLeyFSP = this.obtenerPorcentajesFSP(
+          topesFSP,
+          ibcRedondeado,
+        );
         if (porcentajeLeyFSP > 0) {
           const fondoValor =
             Math.round((ibcRedondeado * porcentajeLeyFSP) / 100) * 100;
@@ -206,7 +209,10 @@ export class AuditService implements OnModuleInit {
     return erroresLey;
   }
 
-  async getDataSueldos(calIdActual: number): Promise<AuditIncidency[]> {
+  async getDataSueldos(
+    clientKey: string,
+    calIdActual: number,
+  ): Promise<AuditIncidency[]> {
     const queryComparacionSueldos = `
       WITH NominaActual AS (
           SELECT
@@ -215,7 +221,7 @@ export class AuditService implements OnModuleInit {
               SUM(CASE WHEN liq_tipo_concepto = 2 THEN liq_valor_concepto ELSE 0 END) AS sueldo_actual_neto,
               SUM(CASE WHEN con_codigo IN (100,110) THEN liq_valor_concepto ELSE 0 END) AS valor_base_actual,
               MAX(CASE WHEN con_codigo IN (100,110) THEN liq_dias_liquidados ELSE 0 END) AS dias_trabajados
-          FROM "SIAN2022".conceliq
+          FROM conceliq
           GROUP BY emp_cedula
       ),
       HistoricoNomina AS (
@@ -223,8 +229,8 @@ export class AuditService implements OnModuleInit {
               historico.emp_cedula,
               historico.cal_id,
               MAX(CASE WHEN historico.con_codigo_concepto IN (100,110) THEN historico.acu_dias_trabajados ELSE 0 END) AS historico_dias
-          FROM "SIAN2022".conceacu historico
-          INNER JOIN "SIAN2022".calendario_pro cal ON historico.cal_id = cal.cal_id
+          FROM conceacu historico
+          INNER JOIN calendario_pro cal ON historico.cal_id = cal.cal_id
           WHERE historico.emp_cedula IN (SELECT cedula_empleado FROM NominaActual)
               AND historico.cal_id < $1
               AND cal.cal_liq_definitiva = 'N'
@@ -239,7 +245,7 @@ export class AuditService implements OnModuleInit {
               SUM(CASE WHEN c.acu_tipo_concepto = 2 THEN c.acu_valor_concepto ELSE 0 END) AS sueldo_anterior_neto,
               SUM(CASE WHEN c.con_codigo_concepto IN (100,110) THEN c.acu_valor_concepto ELSE 0 END) AS valor_base_anterior
           FROM HistoricoNomina h
-          INNER JOIN "SIAN2022".conceacu c ON h.emp_cedula = c.emp_cedula AND h.cal_id = c.cal_id
+          INNER JOIN conceacu c ON h.emp_cedula = c.emp_cedula AND h.cal_id = c.cal_id
           GROUP BY h.emp_cedula, h.historico_dias
       )
       SELECT
@@ -254,7 +260,11 @@ export class AuditService implements OnModuleInit {
       LEFT JOIN HistoricoSueldoNeto historico
       ON actual.cedula_empleado = historico.emp_cedula`;
 
-    const { rows } = await this.db.query(queryComparacionSueldos, [calIdActual]);
+    const { rows } = await this.db.query(
+      queryComparacionSueldos,
+      [calIdActual],
+      clientKey,
+    );
     const nominasInusuales: AuditIncidency[] = [];
 
     for (const item of rows) {
@@ -295,6 +305,7 @@ export class AuditService implements OnModuleInit {
   }
 
   async getNovedades(
+    clientKey: string,
     calIdActual: number,
     fechaInicio: string,
     fechaFin: string,
@@ -304,23 +315,27 @@ export class AuditService implements OnModuleInit {
     // Prestamos
     const queryPrestamos = `
     SELECT p.emp_cedula, p.codigo_descuento, p.pre_consecutivo
-    FROM "SIAN2022".prestemp p
+    FROM prestemp p
     WHERE p.pre_num_cuotas > 0 
       AND p.pre_saldo > 0 
       AND p.pre_estado_prestamo = 'A'
       AND EXISTS (
-          SELECT 1 FROM "SIAN2022".conceliq c1 
+          SELECT 1 FROM conceliq c1 
           WHERE c1.cal_id = $1 AND c1.emp_cedula = p.emp_cedula
       )
       AND NOT EXISTS (
-          SELECT 1 FROM "SIAN2022".conceliq c2 
+          SELECT 1 FROM conceliq c2 
           WHERE c2.cal_id = $1 
             AND c2.emp_cedula = p.emp_cedula 
             AND c2.con_codigo = p.codigo_descuento
             AND c2.con_consecutivo_prestamo = p.pre_consecutivo 
       );
     `;
-    const prestamos = await this.db.query(queryPrestamos, [calIdActual]);
+    const prestamos = await this.db.query(
+      queryPrestamos,
+      [calIdActual],
+      clientKey,
+    );
     for (const p of prestamos.rows) {
       novedades.push({
         tipo_descuadre: 'PRESTAMO_OMITIDO',
@@ -332,18 +347,18 @@ export class AuditService implements OnModuleInit {
 
     // Licencias
     const queryLicencias = `
-        SELECT emp_cedula FROM "SIAN2022".licenemp
+        SELECT emp_cedula FROM licenemp
         WHERE le_fecha_inicio <= $3 
             AND le_fecha_final >= $2 
-            AND emp_cedula IN (SELECT emp_cedula FROM "SIAN2022".conceliq WHERE cal_id = $1)
+            AND emp_cedula IN (SELECT emp_cedula FROM conceliq WHERE cal_id = $1)
             AND emp_cedula NOT IN 
-            (SELECT emp_cedula FROM "SIAN2022".conceliq WHERE cal_id = $1 AND con_codigo IN (0, 1, 4, 5, 11, 1600, 1602, 1800, 2000, 2005)
+            (SELECT emp_cedula FROM conceliq WHERE cal_id = $1 AND con_codigo IN (0, 1, 4, 5, 11, 1600, 1602, 1800, 2000, 2005)
         );`;
-    const licencias = await this.db.query(queryLicencias, [
-      calIdActual,
-      fechaInicio,
-      fechaFin,
-    ]);
+    const licencias = await this.db.query(
+      queryLicencias,
+      [calIdActual, fechaInicio, fechaFin],
+      clientKey,
+    );
     for (const l of licencias.rows) {
       novedades.push({
         tipo_descuadre: 'LICENCIA_OMITIDA',
@@ -355,12 +370,16 @@ export class AuditService implements OnModuleInit {
     // Embargos
     const queryEmbargos = `
     SELECT e.emp_cedula, e.con_codigo
-    FROM "SIAN2022".embargo e
+    FROM embargo e
     WHERE e.emb_estado = 'A'
-        AND e.emp_cedula IN (SELECT emp_cedula FROM "SIAN2022".conceliq WHERE cal_id = $1)
-        AND e.emp_cedula NOT IN (SELECT emp_cedula FROM "SIAN2022".conceliq WHERE cal_id = $1 AND con_codigo = e.con_codigo);
+        AND e.emp_cedula IN (SELECT emp_cedula FROM conceliq WHERE cal_id = $1)
+        AND e.emp_cedula NOT IN (SELECT emp_cedula FROM conceliq WHERE cal_id = $1 AND con_codigo = e.con_codigo);
     `;
-    const embargos = await this.db.query(queryEmbargos, [calIdActual]);
+    const embargos = await this.db.query(
+      queryEmbargos,
+      [calIdActual],
+      clientKey,
+    );
     for (const e of embargos.rows) {
       novedades.push({
         tipo_descuadre: 'EMBARGO_OMITIDO',
@@ -373,12 +392,16 @@ export class AuditService implements OnModuleInit {
     // Aportes Voluntarios
     const queryVoluntarios = `
     SELECT a.emp_cedula, a.con_codigo
-    FROM "SIAN2022".aportes_adicionales_salpen a
+    FROM aportes_adicionales_salpen a
     WHERE a.aportes_estado = 'A'
-        AND a.emp_cedula IN (SELECT emp_cedula FROM "SIAN2022".conceliq WHERE cal_id = $1)
-        AND a.emp_cedula NOT IN (SELECT emp_cedula FROM "SIAN2022".conceliq WHERE cal_id = $1 AND con_codigo = a.con_codigo);
+        AND a.emp_cedula IN (SELECT emp_cedula FROM conceliq WHERE cal_id = $1)
+        AND a.emp_cedula NOT IN (SELECT emp_cedula FROM conceliq WHERE cal_id = $1 AND con_codigo = a.con_codigo);
     `;
-    const aportes = await this.db.query(queryVoluntarios, [calIdActual]);
+    const aportes = await this.db.query(
+      queryVoluntarios,
+      [calIdActual],
+      clientKey,
+    );
     for (const a of aportes.rows) {
       novedades.push({
         tipo_descuadre: 'APORTE_VOLUNTARIO_OMITIDO',
@@ -389,8 +412,8 @@ export class AuditService implements OnModuleInit {
     }
 
     // Registros Manuales
-    const queryManual = `SELECT DISTINCT emp_cedula FROM "SIAN2022".cmanual WHERE cal_id = $1;`;
-    const manuales = await this.db.query(queryManual, [calIdActual]);
+    const queryManual = `SELECT DISTINCT emp_cedula FROM cmanual WHERE cal_id = $1;`;
+    const manuales = await this.db.query(queryManual, [calIdActual], clientKey);
     for (const m of manuales.rows) {
       novedades.push({
         tipo_descuadre: 'REGISTRO_MANUAL',
@@ -402,17 +425,17 @@ export class AuditService implements OnModuleInit {
     // Primas
     const queryPrimas = `
     SELECT p.emp_cedula, p.pri_codigo
-    FROM "SIAN2022".prima_empleado p
+    FROM prima_empleado p
     WHERE UPPER(p.pem_indica) = 'A'
         AND ((p.pem_fecha_ini <= $3 AND p.pem_fecha_fin >= $2) OR p.pem_fecha_fin IS NULL)
-        AND p.emp_cedula IN (SELECT emp_cedula FROM "SIAN2022".conceliq WHERE cal_id = $1)
-        AND p.emp_cedula NOT IN (SELECT emp_cedula FROM "SIAN2022".conceliq WHERE cal_id = $1 AND con_codigo = p.pri_codigo);
+        AND p.emp_cedula IN (SELECT emp_cedula FROM conceliq WHERE cal_id = $1)
+        AND p.emp_cedula NOT IN (SELECT emp_cedula FROM conceliq WHERE cal_id = $1 AND con_codigo = p.pri_codigo);
     `;
-    const primas = await this.db.query(queryPrimas, [
-      calIdActual,
-      fechaInicio,
-      fechaFin,
-    ]);
+    const primas = await this.db.query(
+      queryPrimas,
+      [calIdActual, fechaInicio, fechaFin],
+      clientKey,
+    );
     for (const p of primas.rows) {
       novedades.push({
         tipo_descuadre: 'PRIMA_OMITIDA',
@@ -425,16 +448,17 @@ export class AuditService implements OnModuleInit {
     // Bonificacion
     const queryBonoIndebido = `
         SELECT liq.emp_cedula, e.emp_fecha_inicio_est, liq.liq_valor_concepto
-        FROM "SIAN2022".conceliq liq
-        JOIN "SIAN2022".empleado e ON liq.emp_cedula = e.emp_cedula
+        FROM conceliq liq
+        JOIN empleado e ON liq.emp_cedula = e.emp_cedula
         WHERE liq.cal_id = $1 AND liq.con_codigo = 800
             AND (EXTRACT(MONTH FROM e.emp_fecha_inicio_est) != EXTRACT(MONTH FROM CAST($2 AS DATE))
                OR EXTRACT(YEAR FROM e.emp_fecha_inicio_est) >= EXTRACT(YEAR FROM CAST($2 AS DATE)));
     `;
-    const bonosI = await this.db.query(queryBonoIndebido, [
-      calIdActual,
-      fechaInicio,
-    ]);
+    const bonosI = await this.db.query(
+      queryBonoIndebido,
+      [calIdActual, fechaInicio],
+      clientKey,
+    );
     for (const b of bonosI.rows) {
       novedades.push({
         tipo_descuadre: 'PAGO_INDEBIDO_BONO_SERVICIO',
@@ -445,16 +469,17 @@ export class AuditService implements OnModuleInit {
 
     const queryBonoOmitido = `
         SELECT DISTINCT e.emp_cedula, e.emp_fecha_inicio_est
-        FROM "SIAN2022".empleado e
-        JOIN "SIAN2022".conceliq liq ON e.emp_cedula = liq.emp_cedula AND liq.cal_id = $1
+        FROM empleado e
+        JOIN conceliq liq ON e.emp_cedula = liq.emp_cedula AND liq.cal_id = $1
         WHERE EXTRACT(MONTH FROM e.emp_fecha_inicio_est) = EXTRACT(MONTH FROM CAST($2 AS DATE))
           AND EXTRACT(YEAR FROM e.emp_fecha_inicio_est) < EXTRACT(YEAR FROM CAST($2 AS DATE))
-          AND NOT EXISTS (SELECT 1 FROM "SIAN2022".conceliq c2 WHERE c2.cal_id = $1 AND c2.emp_cedula = e.emp_cedula AND c2.con_codigo = 800);
+          AND NOT EXISTS (SELECT 1 FROM conceliq c2 WHERE c2.cal_id = $1 AND c2.emp_cedula = e.emp_cedula AND c2.con_codigo = 800);
     `;
-    const bonosO = await this.db.query(queryBonoOmitido, [
-      calIdActual,
-      fechaInicio,
-    ]);
+    const bonosO = await this.db.query(
+      queryBonoOmitido,
+      [calIdActual, fechaInicio],
+      clientKey,
+    );
     for (const b of bonosO.rows) {
       novedades.push({
         tipo_descuadre: 'OMISION_BONO_SERVICIO',
@@ -467,19 +492,22 @@ export class AuditService implements OnModuleInit {
   }
 
   async getContextIA(
+    clientKey: string,
     data: AuditIncidency[],
     calIdActual: number,
     fInicio: string,
     fFin: string,
   ): Promise<PayrollAuditResult[]> {
+    const diccionarioConceptos = await this.loadDiccionario(clientKey);
     const contextoIA: PayrollAuditResult[] = [];
     for (const item of data) {
       const infoExtra: any = {};
-      const queryManual = `SELECT ma_codigo_concepto, ma_valor_concepto FROM "SIAN2022".cmanual WHERE emp_cedula = $1 AND cal_id = $2`;
-      const manuales = await this.db.query(queryManual, [
-        item.cedula_empleado || item.emp_cedula,
-        calIdActual,
-      ]);
+      const queryManual = `SELECT ma_codigo_concepto, ma_valor_concepto FROM cmanual WHERE emp_cedula = $1 AND cal_id = $2`;
+      const manuales = await this.db.query(
+        queryManual,
+        [item.cedula_empleado || item.emp_cedula, calIdActual],
+        clientKey,
+      );
       if (manuales.rows.length > 0) {
         infoExtra.ALERTA_INVERVENCION_MANUAL =
           'El usuario forzó conceptos manualmente.';
@@ -489,7 +517,7 @@ export class AuditService implements OnModuleInit {
       switch (item.tipo_descuadre) {
         case 'ERROR_CALCULO_RETROACTIVO':
           infoExtra.alerta =
-            'El valor pagado por concepto de retroactivo NO equivale exactamente al 7% del salario base histórico acumulado.';
+            'El value pagado por concepto de retroactivo NO equivale exactamente al 7% del salario base histórico acumulado.';
           infoExtra.instruccion_ia =
             'Indica la base histórica sumada, explica que el aumento por decreto es del 7% y muestra la diferencia exacta.';
           break;
@@ -497,7 +525,7 @@ export class AuditService implements OnModuleInit {
         case 'ERROR_PENSION_RETROACTIVO':
           infoExtra.alerta =
             'Evasión de Seguridad Social: No se descontó el 4% exacto sobre el pago retroactivo.';
-          infoExtra.instruccion_ia = 
+          infoExtra.instruccion_ia =
             'Indica que no se descontó el 4% correcto sobre la base salarial del retroactivo.';
           break;
         case 'OMISION_DESCUENTO_SUBSIDIO':
@@ -507,28 +535,33 @@ export class AuditService implements OnModuleInit {
             'Explica que el nuevo sueldo proyectado supera el tope legal y se omitió el reintegro.';
           break;
         case 'ERROR_BONIFICACION_RETROACTIVO':
-          infoExtra.alerta = 'Inconsistencia detectada en Bonificación por Servicios.';
-          infoExtra.instruccion_ia = 'Menciona que la bonificación (38% del sueldo) no coincide con el recálculo.';
+          infoExtra.alerta =
+            'Inconsistencia detectada en Bonificación por Servicios.';
+          infoExtra.instruccion_ia =
+            'Menciona que la bonificación (38% del sueldo) no coincide con el recálculo.';
           break;
         case 'ERROR_VACACIONES_RETROACTIVO':
-          infoExtra.alerta = 'Inconsistencia en el recálculo de doceavas para Vacaciones.';
-          infoExtra.instruccion_ia = 'Informa sobre el error en el recálculo del retroactivo de vacaciones incluyendo doceavas.';
+          infoExtra.alerta =
+            'Inconsistencia en el recálculo de doceavas para Vacaciones.';
+          infoExtra.instruccion_ia =
+            'Informa sobre el error en el recálculo del retroactivo de vacaciones incluyendo doceavas.';
           break;
         case 'NORMALIZACION_DIAS':
           infoExtra.alerta =
             'El sueldo base y el neto son mayores este mes porque el empleado normalizó sus días laborados.';
           break;
         case 'OTRO_CONCEPTO_DETECTADO':
-          const queryActual = `SELECT con_codigo, liq_valor_concepto FROM "SIAN2022".conceliq WHERE emp_cedula = $1 AND cal_id = $2 AND con_codigo NOT IN (100,110);`;
-          const actualRows = await this.db.query(queryActual, [
-            item.cedula_empleado || item.emp_cedula,
-            calIdActual,
-          ]);
+          const queryActual = `SELECT con_codigo, liq_valor_concepto FROM conceliq WHERE emp_cedula = $1 AND cal_id = $2 AND con_codigo NOT IN (100,110);`;
+          const actualRows = await this.db.query(
+            queryActual,
+            [item.cedula_empleado || item.emp_cedula, calIdActual],
+            clientKey,
+          );
           infoExtra.conceptos_adicionales_actuales = actualRows.rows.map(
             (c) => ({
               codigo_concepto: c.con_codigo,
               nombre_concepto:
-                this.diccionarioConceptos[c.con_codigo] ||
+                diccionarioConceptos[c.con_codigo] ||
                 'Concepto ' + c.con_codigo,
               valor_liquidado: c.liq_valor_concepto,
             }),
@@ -536,7 +569,7 @@ export class AuditService implements OnModuleInit {
           break;
         case 'PRESTAMO_OMITIDO':
           const nombreDescuento =
-            this.diccionarioConceptos[item.codigo_concepto_omitido] ||
+            diccionarioConceptos[item.codigo_concepto_omitido] ||
             'Concepto Desconocido';
           infoExtra.alerta = `Deducción activa omitida: ${nombreDescuento}.`;
           break;
@@ -561,6 +594,7 @@ export class AuditService implements OnModuleInit {
   }
 
   async getRetroactivo(
+    clientKey: string,
     calIdActual: number,
     fechaInicio: string,
     fechaFin: string,
@@ -578,8 +612,8 @@ export class AuditService implements OnModuleInit {
               MAX(CASE WHEN h.con_codigo_concepto = 1100 THEN h.acu_dias_trabajados ELSE 0 END) AS dias_vacaciones,
               MAX(CASE WHEN h.con_codigo_concepto = 150 THEN h.acu_valor_concepto ELSE 0 END) AS prima_coordinacion,
               SUM(CASE WHEN h.con_codigo_concepto IN (1100, 1200, 1210) THEN h.acu_valor_concepto ELSE 0 END) AS historico_vacaciones_pagado
-          FROM "SIAN2022".conceacu h
-          INNER JOIN "SIAN2022".calendario_pro cal ON h.cal_id = cal.cal_id
+          FROM conceacu h
+          INNER JOIN calendario_pro cal ON h.cal_id = cal.cal_id
           WHERE h.con_codigo_concepto IN (1, 2, 3, 4, 5, 7, 9, 10, 11, 12, 100, 101, 102, 103, 110, 111, 120, 180, 200, 201, 600, 601, 602, 630, 631, 632, 700, 710, 800, 801, 810, 900, 901, 1100, 1200, 1210, 1300, 1400, 1410, 1500, 1600, 1602, 1700, 1800, 2000, 2005, 2100, 2200, 2300, 2500, 2600, 2700, 3000)
             AND cal.cal_fcha_ini >= $2
             AND cal.cal_fcha_fin <= $3
@@ -601,7 +635,7 @@ export class AuditService implements OnModuleInit {
               SUM(CASE WHEN con_codigo = 502 THEN liq_valor_concepto ELSE 0 END) AS descuento_transporte,
               SUM(CASE WHEN con_codigo = 503 THEN liq_valor_concepto ELSE 0 END) AS descuento_alimentacion,
               SUM(CASE WHEN con_codigo IN (800, 801, 802) THEN liq_valor_concepto ELSE 0 END) AS retro_bonificacion
-          FROM "SIAN2022".conceliq
+          FROM conceliq
           WHERE cal_id = $1 AND liq_quincena_numero = 99
           GROUP BY emp_cedula
       )
@@ -624,11 +658,11 @@ export class AuditService implements OnModuleInit {
       FROM HistoricoAcumulado h
       INNER JOIN RetroPagado p ON h.emp_cedula = p.emp_cedula ORDER BY h.emp_cedula ASC;`;
 
-    const { rows } = await this.db.query(queryRetroactivo, [
-      calIdActual,
-      fechaInicio,
-      fechaFin,
-    ]);
+    const { rows } = await this.db.query(
+      queryRetroactivo,
+      [calIdActual, fechaInicio, fechaFin],
+      clientKey,
+    );
     const erroresRetroactivo: AuditIncidency[] = [];
 
     for (const item of rows) {
@@ -728,7 +762,8 @@ export class AuditService implements OnModuleInit {
 
       const ibcRetroRedondeado = Math.round(retroPagadoLey100 / 1000) * 1000;
       const saludEsperada = Math.round((ibcRetroRedondeado * 0.04) / 100) * 100;
-      const pensionEsperada = Math.round((ibcRetroRedondeado * 0.04) / 100) * 100;
+      const pensionEsperada =
+        Math.round((ibcRetroRedondeado * 0.04) / 100) * 100;
       const saludDescontada = Number(item.retro_salud);
       const pensionDescontada = Number(item.retro_pension);
 
