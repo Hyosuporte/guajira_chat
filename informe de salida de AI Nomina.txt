@@ -1,0 +1,276 @@
+--- INFORME DE SALIDA DE AI - AUDITORÍA DE NÓMINA ---
+Fecha: 22/4/2026, 10:04:09 p. m.
+------------------------------------------------------------
+
+
+>>> PROCESANDO CLIENTE: CARDIQUE
+Usando única opción disponible (ID: 460)
+Ejecutando auditoría de nómina para el calendario 460 | Periodo: 12 | Año: 2025
+Se detectaron 318 incidencias en total.
+Generando reportes de IA para los primeros 30 empleados...
+
+------------------------------------------------------------
+Empleado 1052968024: Se detecta un descuadre de tipo VARIACION_DIAS. El sueldo_actual es de 2.252.347 COP en comparación con el sueldo_anterior de 1.190.985 COP, lo que indica un aumento en el dinero recibido. Al mismo tiempo, el valor_base_actual es de 475.491 COP frente al valor_base_anterior de 1.132.119 COP, mostrando que el cálculo del sueldo base se ajustó proporcionalmente a los 90 días trabajados del mes actual, frente a un histórico de 15 días. No se identificaron alertas de intervención manual ni omisiones críticas en conceptos. Se recomienda verificar que la proporción aplicada a los días trabajados cumpla con la normativa legal respectiva.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 73576231. Se observa una variación de días trabajados: pasó de 15 días históricos a 90 días reportados, lo que llevó el sueldo neto a aumentar de 2.498.038 a 8.772.950 COP. Sin embargo, el valor base del sueldo disminuyó de 3.268.678 a 1.372.845 COP, lo que indica un ajuste en la prorrata o en la aplicación de días trabajados sin afectar directamente el salario base contractual. No se han detectado conceptos de vacaciones (por ejemplo, códigos 1100 o 1101) ni alertas de intervención manual en extraData, y tampoco se identifica omisión de conceptos críticos. La diferencia se explica por la modificación en la cantidad de días trabajados, generando mayor pago neto pese al ajuste en la tarifa base.
+------------------------------------------------------------
+
+------------------------------------------------------------
+La nómina del empleado con cédula 33159714 presenta un descuadre por variación de días. Su sueldo neto actual es de $1.512.248, mientras que el sueldo anterior era de $671.406, lo que genera un incremento exacto de $840.842. No se detectaron alertas de intervención manual ni se informa de omisiones en conceptos críticos (como préstamos, licencias o aportes voluntarios). Cabe destacar que los días trabajados registrados son 0 tanto en el mes actual como en el histórico, lo que sugiere revisar la parametrización de los días laborados para confirmar la corrección del proceso de liquidación.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 73561169: Se observa que el pago neto actual es de $12.669.540 frente al pago anterior de $4.788.827, lo que se explica por el incremento en los días trabajados, pasando de 14 días históricos a 69 días en el período actual. Sin embargo, se nota que el valor base del sueldo pasó de $4.314.189 a $1.488.394, lo que indica que la variación se debe a un ajuste en la cantidad de días laborados y el prorrateo aplicado, y no a un cambio en la tarifa del sueldo (valor base). Se recomienda revisar el método de cálculo de los días trabajados para confirmar que el aumento corresponde a un ajuste legítimo y que ningún otro concepto (como deducciones o prorrateos indebidos) esté afectando la liquidación.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 73242953. Se identificó un descuadre por VARIACION_DIAS ya que el número de días trabajados aumentó de un histórico de 15 a 90 días, lo que ocasionó que el sueldo neto aumentara de 8.793.606 COP a 37.117.375 COP. Sin embargo, el valor base disminuyó de 9.757.537 COP a 4.098.165 COP, lo que sugiere un reajuste en la base salarial en función de la variación real de días trabajados. No se detectaron alertas de intervención manual ni omisiones críticas en conceptos obligatorios, por lo que el comportamiento de la nómina en este caso se explica por el ajuste en la cantidad de días laborados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 1128050403 presenta un descuadre de tipo VARIACION_DIAS. Se evidenció que el sueldo_actual es de COP 12.103.531, mientras que el sueldo_anterior era de COP 560.913 y en ambos periodos los días trabajados (dias_trabajados = 0 y historico_dias = 0) permanecen en cero. Esto indica que la diferencia en el monto del sueldo no se basa en la cantidad de días laborados, por lo que se requiere una revisión para confirmar si la variación se debe a un ajuste especial, error en la parametrización o alguna entrada incorrecta en la nómina. No se detectaron alertas por intervención manual, deducciones relacionadas con vacaciones ni omisiones de conceptos según la información disponible en extraData.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1067949975  
+Tipo de descuadre: VARIACION_DIAS  
+El número de días trabajados actual es 52, con un histórico de 2 días, lo que implica un incremento en la cantidad de días laborados. Como consecuencia, el sueldo_actual alcanzó 9.787.707, muy por encima del sueldo_anterior de 449.630. De igual modo, el valor_base_actual es de 899.497 en contraste con el valor_base_anterior de 494.230. No se detectan alertas de intervención manual ni indicios de omisión de conceptos. La diferencia en el pago se explica por el aumento en los días trabajados y la correspondiente variación en la base salarial, sin contravenir ninguna disposición de la Ley 100.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1051654287. Se identifica un descuadre por VARIACION_DIAS: el sueldo actual asciende a 8.814.469 mientras que el sueldo del mes anterior era de 2.776.366. Esto se debe a que se trabajaron 69 días en el mes actual en comparación con 14 días históricos. Sin embargo, el valor base del sueldo se redujo de 3.050.766 a 1.052.515, lo que indica que, pese a contar con una base salarial inferior, se pagaron significativamente más días. No se detectaron alertas por intervención manual ni se encontraron conceptos de vacaciones en los datos analizados. Se recomienda revisar la justificación de los días trabajados adicionales para confirmar la coherencia con la normatividad actual.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 9299452: Se detecta un descuadre tipo VARIACION_DIAS. En el mes actual se reportaron 90 días trabajados frente a 15 días en el período histórico, pero el sueldo actual fue de 1.298.152 y el valor base actual de 1.160.328, comparados con un sueldo anterior de 2.541.489 y un valor base anterior de 2.762.689. Esta discrepancia indica que, a pesar de un mayor número de días laborados, los montos pagados son considerablemente inferiores, lo que sugiere incoherencia en la aplicación de los parámetros de cálculo de la nómina. No se reportaron alertas de intervención manual ni se identificaron otros conceptos (como deducciones de Salud 7.200 o Pensión 5.200, o conceptos de vacaciones 1100/1101) que permitan justificar este ajuste conforme a la Ley 100. Se recomienda revisar el procedimiento de cómputo de días trabajados y su impacto en la liquidación de la nómina para asegurar el cumplimiento normativo.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1050954125, bajo el descuadre VARIACION_DIAS, presenta un sueldo_actual de 6,274,260 pesos frente a un sueldo_anterior de 1,697,071 pesos, a pesar de reportar 0 días trabajados en ambos periodos. Se recomienda revisar la programación de días y la aplicación de conceptos salariales, ya que la variación salarial no concuerda con la ausencia de días laborados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 23002680: Se detecta un descuadre de tipo VARIACION_DIAS. En el mes actual se reportaron 69 días trabajados, contrastando con los 14 días históricos registrados. Como resultado, el sueldo actual asciende a 6.277.679, mientras que el sueldo del período anterior fue de 1.900.880; a pesar de que el valor base actual se redujo a 720.664 frente a 2.088.880 previamente. Esto indica que el incremento en el monto recibido se debe a la mayor cantidad de días laborados, lo que ha generado ajustes en otros conceptos para compensar este cambio en la jornada. Se recomienda revisar que todos los ajustes aplicados cumplan con la normatividad laboral vigente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 73184083 presenta un descuadre de tipo VARIACION_DIAS. Se observa que en el mes actual se pagaron 90 días trabajados, generando un sueldo_actual de 7,356,254, en comparación con el sueldo_anterior de 2,541,689 correspondiente a 15 días históricos. Además, el valor_base_actual de 1,160,328 es inferior al valor_base_anterior de 2,762,689, lo que indica una reconfiguración en el cálculo de la base salarial respecto al número de días laborados. Se recomienda revisar el criterio de asignación de días y el ajuste en el valor base para confirmar que la liquidación se realizó de acuerdo con lo normado.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 45766539 presenta un descuadre por VARIACION_DIAS. Con 0 días trabajados (historico_dias: 0) no se justifica que el sueldo haya pasado de 894050 a 4072108. Se debe revisar el cálculo, ya que con ausencia de días trabajados el incremento en el sueldo_actual (4072108) es inconsistente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1007588722: Se detecta una variación en los días trabajados, pasando de 15 días históricos a 90 días actuales. Esto generó un incremento en el sueldo entregado, que pasó de 1.190.985 COP a 3.416.192 COP, lo que es coherente con el aumento en la cantidad de días laborados. Sin embargo, se observa que el valor base actual (475.491 COP) es inferior al valor base anterior (1.132.119 COP), lo que indica un ajuste en la modalidad de liquidación salarial que debe revisarse para confirmar que responde al comportamiento esperado y cumple con la normativa vigente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 1047417811 presenta un descuadre por VARIACION_DIAS. Se observa que sus días trabajados actuales son 90, comparados con un histórico de 15, lo que impacta en el cálculo de su pago. Su sueldo actual asciende a 8.762.010 COP, mientras que el sueldo anterior era de 2.647.810 COP. Por otro lado, el valor base actual es de 1.372.845 COP, inferior al valor base anterior de 3.268.678 COP. Esta discrepancia indica que se está pagando más dinero neto en este mes, pese a que la base salarial se redujo, lo cual sugiere un error en la vinculación entre los días trabajados y el cálculo del sueldo. No se han reportado conceptos de vacaciones ni intervenciones manuales. Se recomienda revisar el método de prorrateo o compensación por días para garantizar el cumplimiento de la normatividad.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1143347628:  
+Se identificó un descuadre de tipo VARIACION_DIAS. Se observa que el sueldo actual (1.433.127 COP) es mayor que el sueldo anterior (1.246.945 COP), lo que indica un incremento neto de 186.182 COP en el dinero depositado en el bolsillo del empleado. Sin embargo, el valor base actual (501.009 COP) es notablemente inferior al valor base anterior (1.192.879 COP), lo que sugiere que, a pesar de haber trabajado 90 días en el período actual en comparación con un histórico de 15 días, se liquidó proporcionalmente una base de salario mucho más baja. No se reportaron alertas de intervención manual ni omisiones en conceptos. Se recomienda revisar con detenimiento el cálculo de los días trabajados y la determinación del valor base, ya que este ajuste podría afectar de manera inconsistente la liquidación de aportes y contribuciones.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 73118278: Se encontró un descuadre de tipo VARIACION_DIAS. El empleado registró 71 días trabajados frente a 15 días históricos, lo que coincide con un aumento del sueldo; el sueldo_actual ascendió a COP 10.360.297 en comparación con el sueldo_anterior de COP 2.623.247. Sin embargo, se observa que el valor_base_actual es de COP 1.531.537, mientras que el valor_base_anterior era de COP 4.622.346, lo que resulta inconsistente, dado que una mayor cantidad de días trabajados debería estar respaldada por una base proporcional o superior. No se detectaron conceptos relacionados con vacaciones ni alertas de intervención manual. Es necesario revisar la aplicación de los días trabajados y su repercusión en la liquidación para asegurar la coherencia entre la variación en días y la base salarial.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 45427739 – Concepto VARIACION_DIAS:
+Se observa que en el mes actual se reporta un sueldo_actual de 6.278.389 COP comparado con un sueldo_anterior de 274.611 COP, a pesar de que los días trabajados (dias_trabajados) se registran en 0 en ambos periodos. Esto indica una discrepancia en el cálculo de la variación diaria, ya que un incremento tan grande en el valor recibido no se justifica por la ausencia de días laborados. Se recomienda revisar el proceso de pago y confirmar que la base salarial y la cantidad de días se hayan aplicado correctamente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1143362445 – Se observa un descuadre identificado como VARIACION_DIAS. En el mes actual el empleado registró 90 días trabajados frente a 15 días históricos, lo que resultó en un sueldo neto actual de 6.882.942, comparado con 2.541.689 del mes anterior. Aún así, el valor base del sueldo pasó de 2.762.689 en el periodo anterior a 1.160.328 en el actual. Se recomienda revisar los cálculos de aplicación de días trabajados para confirmar que la tarifa aplicada es correcta, ya que la variación en días produjó un incremento considerable en el neto, pero una disminución en el salario base.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 1047365833 presenta un descuadre del tipo VARIACION_DIAS. Se observa que en el periodo actual se reportan 0 días trabajados (dias_trabajados: 0, historico_dias: 0), sin embargo, el sueldo_actual es de $9.738.920, mientras que el sueldo_anterior era de $3.148.208. Esta variación en el valor del sueldo no concuerda con la inexistencia de días trabajados, lo que indica una inconsistencia que requiere revisión.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 73159396: Se registra un descuadre por VARIACION_DIAS. En el mes actual se registraron 81 días trabajados frente a 2 días históricos del período anterior, lo que incrementó considerablemente tanto el valor base como el sueldo. El valor base actual es de 2.282.119, comparado con 804.980 del mes anterior; asimismo, el sueldo pasó de 732.380 a 15.919.655. No se encontraron registros de concepto de vacaciones ni intervenciones manuales en extraData, por lo que se concluye que el incremento en el pago se debe exclusivamente a la mayor cantidad de días laborados. Se recomienda verificar que 81 días efectivamente corresponden al período trabajado para asegurar la validez de este ajuste.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 1143355819 presenta un descuadre de tipo VARIACION_DIAS. Se observa que, pese a registrar 0 días trabajados (dias_trabajados: 0; historico_dias: 0), el sueldo_actual asciende a 7.353.876, muy superior al sueldo_anterior de 338.959. Además, tanto el valor_base_actual como el valor_base_anterior son 0, lo que indica que no se ha registrado un sueldo base convencional. En ausencia de otros conceptos (como vacaciones) o alertas en extraData, la discrepancia es inexplicable dado que no se laboró durante ninguno de los períodos. Se recomienda revisar de manera urgente el registro de días y la asignación de valores en la nómina, ya que se ha pagado un monto muy superior sin sustento legal en horas o días laborados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 30765146: en este mes se registraron 69 días trabajados en comparación con 14 días históricos, lo que ha generado un incremento en el sueldo actual de 10.180.762 respecto al sueldo anterior de 3.840.130. Sin embargo, se observa que el valor base actual es de 1.193.564, mientras que el valor base anterior era de 3.459.608, lo que resulta inconsistente con el incremento en el pago. Se recomienda revisar la forma en que se liquidaron los días trabajados y la aplicación de los valores base para asegurar la corrección en la nómina; hasta el momento, no se detectó intervención manual ni alertas relacionadas con las deducciones o conceptos de vacaciones según lo previsto por la normatividad.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1007639617: Se detecta un descuadre por VARIACION_DIAS. En el mes actual se registraron 87 días trabajados en comparación con 15 días históricos, lo que generó un aumento en el sueldo neto de 2.541.689 COP (sueldo_anterior) a 6.742.609 COP (sueldo_actual). Sin embargo, el valor base registró una disminución, pasando de 2.762.689 COP (valor_base_anterior) a 1.121.651 COP (valor_base_actual). Se recomienda revisar el cálculo de los días laborales y la aplicación del valor base para asegurar que la compensación se realice conforme a la normatividad y no existan errores en la asignación de conceptos.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 73429825: Se detecta un descuadre por VARIACION_DIAS. En este periodo se trabajaron 60 días, en comparación con los 14 días históricos, lo que explica la variación observada en las cifras salariales. El sueldo actual recibido es de 3.712.948 COP, mientras que el mes anterior era de 1.163.855 COP. Adicionalmente, el valor base actual es de 334.006 COP, en contraste con el valor base anterior de 1.113.354 COP. No se han detectado alertas de intervención manual ni se evidencia incumplimiento de normatividad, por lo cual este ajuste se explica por el incremento en los días laborados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Para el empleado con cédula 9145242 se detectó un descuadre de tipo VARIACION_DIAS. En el mes actual se registraron 81 días trabajados frente a 2 días históricos, lo que incrementó el sueldo de 166379 a 3831687 y el valor base de 159051 a 450908. La diferencia se debe al cambio en la cantidad de días laborados y no se observaron alertas de intervención manual ni presencia de conceptos de vacaciones según la Ley 100.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 73581115. El tipo de descuadre es VARIACION_DIAS. Se observa que el sueldo actual es de COP 8.607.688 y el sueldo anterior de COP 396.424, mientras que el valor base pasó de COP 435.824 a COP 1.235.561. Esto se explica porque se registraron 81 días trabajados en el periodo actual, a diferencia de solo 2 días históricos reflejados anteriormente, lo que implicó un cálculo proporcionalmente mayor en los conceptos salariales. No se encontraron omisiones, intervenciones manuales ni deducciones indebidas en la nómina.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1047472827. En este caso, se registra un descuadre de tipo VARIACION_DIAS. A pesar de que en el período actual se reportan 0 días trabajados, se le pagó un sueldo_actual de 7.353.879, mientras que el sueldo_anterior era de 338.959. Esta diferencia tan marcada sin días laborados registrados requiere revisar la causa del pago, ya que, sin evidencia de que se haya aplicado correctamente un concepto como el de vacaciones u otro ajuste especial, el incremento no se ajusta a lo esperado. Se recomienda revisar la documentación que respalde este pago para confirmar que cumpla con la normatividad legal.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Para el empleado con cédula 1050954310 se detecta un descuadre por VARIACION_DIAS. El empleado pasó de tener 15 días históricos a trabajar 90 días en el periodo actual, lo que explica el incremento del sueldo_actual de 2.541.689 pesos a 7.293.688 pesos. Al mismo tiempo, el valor_base_actual bajó de 2.762.689 pesos a 1.160.328 pesos, ya que este representa el sueldo base, distinto del dinero neto en el bolsillo (sueldo_actual). No se encontraron alertas de intervención manual ni otros errores en la nómina.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 33104287 presenta un descuadre clasificado como VARIACION_DIAS. En el periodo actual se reportaron 90 días trabajados, con un sueldo_actual de 7.468.835 COP y un valor_base_actual de 1.160.328 COP, comparado con el mes anterior en el que se tenían 15 días trabajados, un sueldo_anterior de 2.486.435 COP y un valor_base_anterior de 2.762.689 COP. El notable aumento en el sueldo neto se debe al incremento en los días trabajados; sin embargo, la reducción abrupta en el valor base salarial es inconsistente, ya que no parece aplicarse proporcionalmente la variación en las jornadas laborales. Se recomienda revisar el cálculo de la base salarial para asegurar que los días trabajados se reflejen correctamente en el salario base.
+------------------------------------------------------------
+
+
+>>> PROCESANDO CLIENTE: CVSCORDOBA
+Usando opción 2 (ID: 169)
+Ejecutando auditoría de nómina para el calendario 169 | Periodo: 4 | Año: 2026
+Se detectaron 72 incidencias en total.
+Generando reportes de IA para los primeros 30 empleados...
+
+------------------------------------------------------------
+Empleado con cédula 78734578: Se identificó un descuadre del tipo VARIACION_DIAS. En el mes actual se reportaron 90 días trabajados (historico: 30 días), lo que generó un valor base actual de 9.489.210 pesos (anterior: 7.413.445 pesos) y un sueldo neto de 8.612.320 pesos (anterior: 6.434.911 pesos). La diferencia se explica por el mayor número de días laborados en el periodo actual, sin que se evidencie incumplimiento en deducciones por conceptos de vacaciones, intervención manual o cambio en sueldo base.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado 50927824: La nómina muestra una variación en los días trabajados, pasando de 30 días en el periodo anterior a 84 días en el periodo actual. Esto explica el aumento en el valor del sueldo, que pasó de 2.308.113 a 3.056.064, y en el valor base, de 2.757.944 a 3.491.561. No se detectaron conceptos de vacaciones (como 1100 o 1101) ni intervenciones manuales. En este caso, el incremento en la nómina se debe al mayor número de días laborados y el cálculo se encuentra justificado.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1069490444: Se detecta una variación en días trabajados, pasando de 30 días (histórico_dias) en el período anterior a 90 días (dias_trabajados) en el mes actual. Esto se refleja en el incremento del Sueldo Actual de 2.246.768 a 3.383.193 y del Valor Base de Sueldo de 4.460.407 a 5.709.320. No se ha identificado ninguna intervención manual ni otros conceptos que impliquen deducciones de Salud (código 7200) o Pensión (código 5200) para evaluar la aplicación de la Ley 100, por lo que se concluye que el aumento se debe a la variación en los días laborados y no representa un error normativo en el sistema.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 25799882 – Se detectó un ajuste por variación de días trabajados, pasando de un histórico de 30 días a 70 días en el periodo actual. Esto generó que el sueldo actual se incremente a 8.533.471 y que el valor base se eleve a 8.692.774, en comparación con el sueldo anterior de 5.843.798 y el valor base anterior de 7.048.194. No se identificaron deducciones correspondientes a conceptos de vacaciones (códigos 1100 o 1101), ni alertas de intervención manual, omisiones de conceptos o descuentos indebidos. La variación se debe exclusivamente al incremento en los días laborados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 15041749. Se detectó un descuadre del tipo VARIACION_DIAS, donde los días trabajados actuales son 68 en comparación con un histórico de 30 días. Esta variación de días explica el incremento observado en el sueldo, pasando de un sueldo anterior de 2.503.926 y un valor base anterior de 2.385.758 a un sueldo actual de 3.384.328 y un valor base actual de 2.931.302. No se identificaron otros conceptos (como deducciones de Salud 7.200 o Pensión 5.200, ni conceptos vacacionales 1100/1101) que modifiquen la interpretación, ni alertas de intervención manual. En consecuencia, el aumento en los días trabajados justifica el incremento en el pago, cumpliendo con la normatividad.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 45503807 presenta una variación en días trabajados: en el periodo actual se reportaron 90 días en lugar de los 30 históricos. Esto explica que el sueldo neto actual de 19.131.758 haya aumentado con respecto al sueldo neto anterior de 6.458.911 y que el valor base haya pasado de 7.413.445 a 9.489.213. No se detectaron conceptos de vacaciones (ejemplos 1100 o 1101), ni alertas de intervención manual, omisiones o descuentos indebidos. La diferencia se debe únicamente a la variación en días trabajados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 78674018.
+
+El concepto de variación se basa en el cambio en los días trabajados, que pasaron de 30 (historico_dias) a 90 (dias_trabajados). El "sueldo_anterior" era de 2.486.784 COP y ahora el "sueldo_actual" es de 3.332.185 COP, mientras que el "valor_base_anterior" era de 2.385.758 COP y el "valor_base_actual" es de 3.053.771 COP. El incremento se debe al aumento en los días laborados, lo que se refleja en los mayores montos percibidos este mes. No se detectaron intervenciones manuales ni otras anomalías en la información adicional.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 78017445 presenta un descuadre de tipo VARIACION_DIAS. En el periodo actual se le pagó un sueldo_actual de 6.959.567 COP y un valor_base_actual de 3.053.771 COP, mientras que en el mes anterior se registró un sueldo_anterior de 1.750.905 COP y un valor_base_anterior de 2.385.758 COP. Además, sus días trabajados pasaron de un histórico de 30 a 90 en el periodo actual, lo que explica el incremento en el valor final. No se detectaron alertas de intervención manual ni omisiones de conceptos críticos en extraData, por lo que la variación se justifica por el mayor número de días trabajados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 15679451  
+Se detecta un descuadre de tipo VARIACION_DIAS. El registro muestra que el empleado trabajó 81 días en el mes actual, en comparación con 30 días históricos, lo que explica el incremento en su remuneración. Su sueldo neto aumentó de 6.023.612 COP en el mes anterior a 7.762.252 COP en el mes actual, y el valor base salarial pasó de 7.048.194 COP a 8.873.678 COP. No se observa la presencia de deducciones relacionadas con vacaciones ni innecesaria intervención manual, por lo que el incremento es atribuible directamente al aumento en los días trabajados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 2761355: Se observa que al pasar de 30 días históricos a 90 días trabajados, el sueldo actual aumentó a 7.033.225 y el valor base actual a 10.219.400, en comparación con el mes anterior (sueldo 5.044.332 y valor base 7.983.907). Esto explica que el incremento se deba a la variación en los días trabajados, sin evidencia de deducciones relacionadas a vacaciones ni intervención manual en la nómina. La variación es consistente y correcta según la regla de VARIACION_DIAS.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 73093219 presenta una variación en días trabajados, ya que en el mes actual se reportaron 70 días frente a 30 días históricos, lo que ha generado que su sueldo actual ascienda a 10.455.369 pesos y su valor base actual sea de 9.846.819 pesos en comparación con su sueldo anterior de 6.948.268 pesos y valor base anterior de 7.983.907 pesos. No se registran otros conceptos o intervenciones manuales, por lo que se debe revisar que el incremento de días trabajados (posiblemente asociado a ajustes por vacaciones u otros conceptos) esté correctamente documentado y autorizado.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 78021097 presenta una variación en días trabajados: pasó de 30 días en el período anterior a 90 días en el mes actual. Esto se refleja en el sueldo neto, que pasó de 6.551.045 pesos (sueldo_anterior) a 8.391.410 pesos (sueldo_actual), y en la base salarial, que aumentó de 7.413.445 pesos (valor_base_anterior) a 9.489.210 pesos (valor_base_actual). No se detectaron conceptos de vacaciones (códigos 1100 o 1101), ni alertas de intervención manual o de omisiones en el proceso, por lo que la variación se atribuye correctamente al incremento en los días laborados durante el mes.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 50983852:
+Se identificó un descuadre de tipo VARIACION_DIAS. El número de días trabajados aumentó de 23 (historico_dias) a 83 (dias_trabajados), lo que produjo que el Sueldo (sueldo_actual) pasara de 3.793.105 COP (sueldo_anterior) a 4.629.874 COP. Sin embargo, el valor base del sueldo (valor_base_actual) disminuyó de 4.236.123 COP (valor_base_anterior) a 4.026.157 COP. Esta diferencia se debe al mayor número de días laborados en el período actual, que generó un incremento en el pago neto a pesar de una reducción en la base salarial calculada. No se evidenció intervención manual ni otros conceptos que ameriten un análisis adicional de la normatividad legal.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 25914124: Se registraron 70 días trabajados en el presente mes frente a 30 días del mes anterior. Como consecuencia, el sueldo actual aumentó de 12,567,413 a 16,360,011, y el valor base del sueldo pasó de 9,567,875 a 11,800,379. La variación es atribuible al incremento en la cantidad de días laborados, sin presentar incumplimiento de normatividad.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 50850322:  
+El descuadre es de tipo VARIACION_DIAS. En el mes actual el sueldo es de 9.326.725 y el valor base es de 9.108.653, mientras que el mes anterior se registró un sueldo de 1.712.150 y un valor base de 1.976.919. Además, los días trabajados aumentaron de un histórico de 8 días a 68 días en el mes actual. Esto indica que el incremento en el monto liquidado se debe a la mayor cantidad de días laborados. No se han detectado irregularidades en deducciones, ni se han presentado alertas de intervención manual o conceptos que impliquen omisiones legales.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 6883396: Se identificó un descuadre de tipo VARIACION_DIAS. En el periodo anterior registró 30 días trabajados con un sueldo de $2.571.480 y un valor base de $4.460.407, mientras que en el mes actual se reportaron 90 días trabajados, un sueldo de $4.272.890 y un valor base de $5.709.320. Es necesario revisar que el cálculo proporcional por el incremento de días se haya aplicado correctamente y que la diferencia en el sueldo y la base salarial corresponda a la variación en la cantidad de días laborados. No se detectó intervención manual ni deducciones relacionadas a conceptos de vacaciones.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado identificado con cédula 1067945125 presenta un descuadre de tipo VARIACION_DIAS. Se observa que aumentó el número de días trabajados de 30 en el histórico a 70 en el mes actual, lo que ha generado que el sueldo actual ascienda a 2.817.669, en comparación con el sueldo anterior de 1.999.297. Asimismo, el valor base actual es de 2.942.436 frente al valor base anterior de 2.385.758. No se identificó intervención manual ni otros conceptos críticos, por lo que la variación en el monto recibido se debe exclusivamente al incremento en los días laborados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1066511591  
+Se detectó un descuadre de tipo VARIACION_DIAS. El empleado tiene 76 días trabajados (valor 76) en el mes actual en comparación con un histórico de 30 días (valor 30). Se observa que su sueldo_actual es de 2.531.173, lo que es inferior al sueldo_anterior de 2.848.384, y a la vez su valor_base_actual es de 2.975.837, mayor que el valor_base_anterior de 2.385.758. Esto indica que, pese a haber un incremento en el valor base, la disminución del sueldo neto se debe a la aplicación de la variación en los días trabajados. No se encontraron conceptos de vacaciones (ej. 1100, 1101) implicados en este descuadre, ni alertas de intervención manual en extraData. Se recomienda revisar el método de prorrateo aplicado para confirmar que la variación en la cantidad de días laborados se haya computado correctamente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 1067897844 presenta un descuadre de tipo VARIACION_DIAS. Se registraron 61 días trabajados en el periodo actual, en comparación con 21 días en el histórico. Como consecuencia, el sueldo actual de $10.379.349 (con valor base de $6.574.459) es mucho menor que el sueldo anterior de $27.463.532 (valor base de $12.405.730). Esto indica que la imputación de días trabajados ha sido errónea, afectando de forma directa el cálculo del salario.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 34977241: Se registró un cambio en los días trabajados, pasando de 30 días históricos a 68 días actuales, lo que generó que el sueldo neto aumentara de COP 1,924,665 a COP 3,170,012 y el sueldo base de COP 3,222,201 a COP 3,959,014. Esta variación en los días trabajados explica el incremento en los valores salariales y no se detectaron intervenciones manuales ni otros errores que requieran alerta.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 84086926
+
+La auditoría detecta un descuadre por variación de días. En el mes actual se registraron 90 días trabajados, frente a 30 días históricos. Esto se refleja en un sueldo actual de COP 4.404.220 y un valor base actual de COP 5.709.320, comparados con un sueldo anterior de COP 3.267.795 y un valor base anterior de COP 4.460.407. El incremento en ambos montos se explica por el aumento en la cantidad de días laborados. No se identificó alerta de intervención manual ni omisión de conceptos críticos. Se recomienda verificar, en caso de existir conceptos de vacaciones (por ejemplo, códigos 1100 o 1101), que las deducciones de Salud (COP 7.200) y Pensión (COP 5.200) estén correctamente aplicadas conforme a lo estipulado en la Ley 100.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 34992037 presenta un descuadre por VARIACION_DIAS. Se observa que aumentó significativamente el número de días trabajados a 75, en comparación con los 15 días históricos, lo que generó un incremento en el valor base de 2502403 COP y un sueldo actual de 3035539 COP, frente al sueldo anterior de 1338844 COP y valor base anterior de 1303787 COP. No se identifican omisiones de conceptos o incumplimientos de la normatividad legal en este caso, siendo la diferencia explicada únicamente por el incremento de días trabajados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 79756131 presenta una variación en días trabajados, pasando de 30 a 90 días, lo que incrementa tanto su sueldo como su base salarial. Se observa que el sueldo actual es de 8.795.320 COP y el valor base actual es de 9.489.210 COP, en comparación con el sueldo anterior de 6.574.911 COP y el valor base anterior de 7.413.445 COP. La diferencia se debe al aumento en la cantidad de días laborados; no se identifican otros conceptos (como deducciones por vacaciones o intervenciones manuales) que puedan afectar este incremento.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 50960225: Se registró un cambio en el número de días trabajados, pasando de 30 (histórico) a 90 días en el período actual. Esto ocasionó un incremento proporcional en el valor base del sueldo, que pasó de 2.385.758 a 3.053.771, y en el sueldo neto, que aumentó de 2.026.922 a 2.662.359. No se detectó alerta de intervención manual, ni incumplimiento de la Ley 100, y no se reporta omisión de ningún concepto crítico.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 25878797. Se detectó un descuadre por variación de días trabajados, ya que en el mes actual se registraron 70 días frente a un histórico de 30 días. Esto ha generado que el sueldo_actual se incremente de $3.365.803 a $5.094.945, lo que representa un aumento de $1.729.142, y que el valor_base_actual suba de $4.460.407 a $5.501.169, es decir, un incremento de $1.040.762. No se han identificado alertas por intervención manual ni se han encontrado omisiones de conceptos obligatorios conforme a la normatividad. La diferencia se explica únicamente por el incremento en los días trabajados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 15019289 presentó una variación de días trabajados, pasando de 12 días en el periodo anterior a 72 días en el actual. Esto ocasionó un aumento en su remuneración, pasando el sueldo de 2642582 a 5979594 y la base salarial de 2210151 a 5460915. No se registraron conceptos relacionados con vacaciones ni se detectaron alertas de intervención manual o omisiones de conceptos críticos, por lo que el incremento se explica únicamente por la mayor cantidad de días liquidados.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Para el empleado con cédula 11085458 se detecta un descuadre de tipo VARIACION_DIAS. El concepto "Sueldo Actual" pasó de 2038999 a 4800036 y el concepto "Valor Base" se incrementó de 3499406 a 4171662, acompañando un cambio en los días trabajados de 19 a 79. Esta variación se explica por el aumento considerable en la cantidad de días laborados, sin evidencias de intervenciones manuales ni detección de conceptos de vacaciones que requieran revisar las deducciones según la Ley 100. No se encontraron otros errores normativos en este caso.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado 1067842154: Se detecta un descuadre por VARIACION_DIAS. El empleado trabajó 90 días este mes frente a un histórico de 30 días, lo que justifica que se haya pagado un sueldo_actual de 12,423,365, comparado con el sueldo_anterior de 4,103,407. Asimismo, el valor_base_actual de 5,709,320 es superior al valor_base_anterior de 4,460,407. La diferencia se debe a la mayor cantidad de días trabajados y no presenta indicios de error en la deducción o cambio en el sueldo base. No se reportan alertas de intervención manual u otros errores.
+------------------------------------------------------------
+
+------------------------------------------------------------
+El empleado con cédula 2758801 presentó un descuadre por VARIACION_DIAS. Se incrementaron los días trabajados de 30 a 90, lo que generó un aumento en el pago. El sueldo pasó de 2.428.377 COP (sueldo_anterior) a 3.558.558 COP (sueldo_actual) y el valor base de 4.460.407 COP (valor_base_anterior) a 5.709.320 COP (valor_base_actual). No se detectaron otros errores ni intervención manual en la información proporcionada.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 34982663
+
+El registro indica un cambio en los días trabajados, pasando de 30 días en el período anterior a 90 días en el actual. Esto explica el incremento en la base salarial, que pasó de 2,385,758 COP a 3,053,771 COP, y en el sueldo neto, que aumentó de 2,390,926 COP a 3,173,647 COP. No se encuentran señales de intervención manual ni otros descuadres en la nómina. Se recomienda confirmar que el registro de 90 días trabajados corresponde a la realidad del periodo.
+------------------------------------------------------------
+
+
+>>> PROCESANDO CLIENTE: GUAJIRA
+Usando única opción disponible (ID: 827)
+Ejecutando auditoría de nómina para el calendario 827 | Periodo: 12 | Año: 2025

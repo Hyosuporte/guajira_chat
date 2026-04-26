@@ -1,0 +1,182 @@
+import 'dotenv/config';
+import * as http from 'http';
+import * as fs from 'fs';
+import { generateText } from 'ai';
+import { openai } from '@ai-sdk/openai';
+
+const API_HOST = 'localhost';
+const API_PORT = 3000;
+const REPORT_FILE = 'informe de salida de AI.txt';
+
+function request(options: http.RequestOptions, body?: any): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const req = http.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => (data += chunk));
+      res.on('end', () => {
+        try {
+          resolve(JSON.parse(data));
+        } catch (e) {
+          resolve(data);
+        }
+      });
+    });
+    req.on('error', reject);
+    if (body) {
+      req.write(JSON.stringify(body));
+    }
+    req.end();
+  });
+}
+
+function writeToReport(text: string) {
+  console.log(text);
+  fs.appendFileSync(REPORT_FILE, text + '\n');
+}
+
+async function runAllTests() {
+  if (fs.existsSync(REPORT_FILE)) {
+    fs.unlinkSync(REPORT_FILE);
+  }
+
+  writeToReport('--- INFORME DE SALIDA DE AI - AUDITORÍA DE RETROACTIVOS ---');
+  writeToReport(`Fecha: ${new Date().toLocaleString()}`);
+  writeToReport('------------------------------------------------------------\n');
+
+  try {
+    const schemas = await request({
+      host: API_HOST,
+      port: API_PORT,
+      path: '/audit/schemas',
+      method: 'GET',
+    });
+
+    if (!Array.isArray(schemas) || schemas.length === 0) {
+      writeToReport('No se encontraron bases de datos de clientes.');
+      return;
+    }
+
+    for (const schema of schemas) {
+      writeToReport(`\n>>> PROCESANDO CLIENTE: ${schema}`);
+      
+      const calendars = await request({
+        host: API_HOST,
+        port: API_PORT,
+        path: `/audit/calendars?type=retroactivo&schema=${schema}`,
+        method: 'GET',
+      });
+
+      if (!Array.isArray(calendars) || calendars.length === 0) {
+        writeToReport(`No se encontraron calendarios para el cliente ${schema}.`);
+        continue;
+      }
+
+      let selectedCal;
+      // Instruction: "excepto en el de guajira_sian en este usa la opcion 4 la de id 848"
+      // User says option 4 is ID 848. In my check, ID 848 was option 3. 
+      // I will search for ID 848 specifically for GUAJIRA.
+      if (schema === 'GUAJIRA') {
+        selectedCal = calendars.find(cal => String(cal.cal_id) === '848');
+        if (!selectedCal && calendars.length >= 4) {
+          selectedCal = calendars[3];
+          writeToReport(`Aviso: ID 848 no encontrado, usando opción 4 (ID: ${selectedCal.cal_id})`);
+        } else if (!selectedCal) {
+          selectedCal = calendars[0];
+          writeToReport(`Aviso: ID 848 no encontrado y menos de 4 opciones, usando opción 1 (ID: ${selectedCal.cal_id})`);
+        } else {
+          writeToReport(`Usando ID 848 (Opción ${calendars.indexOf(selectedCal) + 1})`);
+        }
+      } else {
+        // Instruction: "usando el calendario que salga como segunda opcion"
+        if (calendars.length >= 2) {
+          selectedCal = calendars[1];
+          writeToReport(`Usando opción 2 (ID: ${selectedCal.cal_id})`);
+        } else {
+          selectedCal = calendars[0];
+          writeToReport(`Aviso: Solo una opción disponible, usando opción 1 (ID: ${selectedCal.cal_id})`);
+        }
+      }
+
+      writeToReport(`Ejecutando auditoría para el calendario ${selectedCal.cal_id} | Periodo: ${selectedCal.cal_num_periodo} | Año: ${selectedCal.cal_ano}`);
+
+      const auditResponse = await request(
+        {
+          host: API_HOST,
+          port: API_PORT,
+          path: '/audit/retroactive',
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        },
+        {
+          schema: schema,
+          calId: selectedCal.cal_id,
+          fInicio: selectedCal.fecha_inicio,
+          fFin: selectedCal.fecha_fin,
+        },
+      );
+
+      const incidencias = auditResponse.data;
+
+      if (!incidencias || incidencias.length === 0) {
+        writeToReport('No se detectaron errores en los retroactivos para este cliente.');
+      } else {
+        writeToReport(`Se detectaron ${incidencias.length} incidencias en total.`);
+
+        const dataAgrupada = Object.values(
+          incidencias.reduce((acc: any, curr: any) => {
+            const cedula =
+              curr.informacionBase.emp_cedula ||
+              curr.informacionBase.cedula_empleado;
+            if (!acc[cedula]) {
+              acc[cedula] = {
+                cedula_empleado: cedula,
+                incidencias_encontradas: [],
+              };
+            }
+            acc[cedula].incidencias_encontradas.push(curr);
+            return acc;
+          }, {}),
+        );
+
+        const empleadosPrueba = dataAgrupada.slice(0, 10);
+        writeToReport(`Generando reportes de IA para los primeros ${empleadosPrueba.length} empleados...\n`);
+
+        for (const empleado of empleadosPrueba) {
+          try {
+            const { text } = await generateText({
+              model: openai('o3-mini'),
+              system: `Eres un auditor experto en liquidación de RETROACTIVOS de nómina del sector público en Colombia.
+                      INSTRUCCIONES CRÍTICAS DE AUDITORÍA:
+                      1. CERO CÁLCULOS PROPIOS: NO HAGAS CÁLCULOS MATEMÁTICOS POR TU CUENTA. El sistema automatizado (TypeScript) ya cruzó las bases de datos y realizó las validaciones exactas. Tu única labor es interpretar los resultados del JSON y redactar el informe, no recalcularlos.
+                      2. CONTEXTO DE LAS BASES (REGLA DE LEY 100):
+                          - El "retro_pagado_total" incluye TODOS los conceptos pagados (salariales y primas/bonificaciones no salariales). Todo este dinero recibe el aumento por decreto.
+                          - El "retro_pagado_ley100" es una base MENOR. Contiene SOLO los conceptos puramente salariales. Esta es la ÚNICA base sobre la cual el sistema calcula el descuento del 4% de Salud y 4% de Pensión. Entiende que es correcto que la salud no se cobre sobre el total bruto.
+                      3. TU TAREA: Lee exclusivamente los campos "detalle", "alerta" y "tipo_descuadre" de las incidencias en el JSON proporcionado. Basado estrictamente en los textos y números de esos campos, redacta un informe profesional y unificado sobre la situación del empleado.
+                      4. LENGUAJE NATURAL Y GERENCIAL: NUNCA uses ni menciones los nombres de las variables técnicas ni los códigos internos del JSON de forma literal (por ejemplo, está ESTRICTAMENTE PROHIBIDO escribir "tipo_descuadre", "ERROR_CALCULO_RETROACTIVO", "ERROR_SALUD_RETROACTIVO" o "REVISION_MANUAL_VACACIONES"). Traduce esos conceptos a lenguaje natural. Di "Se identificó una inconsistencia en el cobro de salud" o "Se detectó una alerta informativa por vacaciones".
+                      5. MANEJO DE VACACIONES: Si detectas internamente el caso de revisión manual por vacaciones, redacta el informe indicando directamente que es una "Alerta Informativa por Vacaciones Cruzadas / Doceavas". Explica que la diferencia en el 7% se debe a vacaciones pagadas por adelantado en otros años y que requiere revisión visual del auditor humano. Aclara que no es una evasión.
+                      6. PRECISIÓN: Siempre menciona los valores exactos en pesos ($) tal como vienen redactados en el campo "detalle".
+                      7. REGLA DE IDENTIFICACIÓN OBLIGATORIA: Es absolutamente obligatorio que extraigas la cédula del empleado del JSON proporcionado
+                      FORMATO DE SALIDA: TEXTO PLANO. Un solo párrafo fluido, directo y formal.
+                      SIEMPRE DEBES INICIAR TU RESPUESTA EXACTAMENTE CON ESTA FRASE: "Empleado con cédula [aquí la cédula]: " y luego continuas con el informe.
+                      NO USES NEGRITAS, ASTERISCOS NI MARKDOWN.`,
+              prompt:
+                'Error detectado en el Retroactivo:\n' +
+                JSON.stringify(empleado, null, 2),
+            });
+
+            writeToReport('------------------------------------------------------------');
+            writeToReport(text);
+            writeToReport('------------------------------------------------------------\n');
+          } catch (aiError: any) {
+            writeToReport(`Error al generar reporte para empleado: ${aiError.message}`);
+          }
+        }
+      }
+    }
+    writeToReport('\n--- FIN DEL INFORME ---');
+  } catch (error: any) {
+    writeToReport(`\nError crítico durante la ejecución: ${error.message}`);
+  }
+}
+
+runAllTests();

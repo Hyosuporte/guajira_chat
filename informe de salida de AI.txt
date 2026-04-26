@@ -1,0 +1,172 @@
+--- INFORME DE SALIDA DE AI - AUDITORÍA DE RETROACTIVOS ---
+Fecha: 22/4/2026, 9:36:22 p. m.
+------------------------------------------------------------
+
+
+>>> PROCESANDO CLIENTE: CARDIQUE
+Usando opción 2 (ID: 470)
+Ejecutando auditoría para el calendario 470 | Periodo: 99 | Año: 2026
+Se detectaron 146 incidencias en total.
+Generando reportes de IA para los primeros 10 empleados...
+
+------------------------------------------------------------
+Empleado con cédula 3800995: Se detectó una inconsistencia en el descuento aplicado al retroactivo correspondiente a seguridad social. En el primer caso, se identificó que sobre una base de $1160328, el descuento esperado por salud era de $46400, pero se descontaron $46200, lo que genera una alerta de evasión de seguridad social al no aplicar el 4% correcto sobre la base salarial. De igual forma, se observó en el segundo hallazgo una situación análoga en el descuento de pensión, donde sobre la misma base de $1160328, la cantidad esperada era de $46400 y se descontaron $46200, evidenciándose nuevamente el incumplimiento del porcentaje reglamentario. Estos hallazgos deben ser analizados para que se efectúe la corrección necesaria y se asegure el cumplimiento de la normativa vigente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 3805963: Se identificaron dos inconsistencias en el proceso de liquidación del retroactivo, una en el descuento para salud y otra para pensión. En ambos casos, sobre una base de $1.160.328, se debía realizar un descuento del 4% aplicable únicamente sobre el concepto salarial del retroactivo, lo que habría dado como valor esperado de $46.400; sin embargo, se descontaron $46.200 en cada uno, resultando en una diferencia que afecta a la seguridad social. Se recomienda revisar el ajuste aplicado a estos descuentos para asegurar el cumplimiento de la normativa correspondiente y evitar discrepancias en las futuras liquidaciones.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 3806752: se detectaron inconsistencias en el cobro retroactivo tanto en salud como en pensión. En el ámbito de la salud, la base de $540223 presentó un descuento esperado de $21600, pero se aplicó un descuento de $20000; de igual manera, en el ámbito de la pensión sobre la misma base se esperaba un descuento de $21600 y se descontaron $20000. Estas diferencias, identificadas como incumplimientos en la aplicación del 4% correcto sobre la base salarial del retroactivo y calificadas como evasión de seguridad social, requieren una revisión detallada para proceder a los ajustes correspondientes conforme a la normativa vigente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 9110579: Se identificaron inconsistencias en la aplicación de los descuentos de seguridad social sobre el pago retroactivo. Específicamente, en el caso del descuento de salud se observó que, sobre una base de $1.160.328, el descuento esperado era de $46.400, mientras que se descontaron $46.200, situación que coincide con la alerta de que no se aplicó el 4% exacto sobre la base salarial. De igual forma, en el componente correspondiente a pensión, se evidenció la misma diferencia en los valores, ya que se esperaba un descuento de $46.400 y se aplicaron $46.200 sobre la misma base de $1.160.328, lo cual genera una alerta similar en el mismo contexto. Ambos hallazgos requieren la verificación detallada correspondiente para garantizar el cumplimiento de las normativas de seguridad social en el proceso del retroactivo.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 9145242: Se detectó una inconsistencia en el cobro de salud en el cálculo del retroactivo, ya que sobre una base de $677899 se esperaba un descuento de $27100, pero se descontaron $26400, lo cual fue señalado en una alerta por evasión de seguridad social al no aplicar el 4% correcto sobre la base salarial del retroactivo. De igual forma, se identificó un error similar en la aplicación del descuento de pensión, donde sobre la misma base de $677899 se esperaba un descuento de $27100, pero se descontaron $26400, generando nuevamente una alerta por evasión de seguridad social en referencia a la falta de aplicación del 4% correcto sobre la base salarial. Se recomienda una revisión del proceso de liquidación para ajustar los descuentos y asegurar que se cumplan las disposiciones legales vigentes.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 9290608: Se detectó una inconsistencia en el pago retroactivo correspondiente a la seguridad social, evidenciada en dos incidencias; en la primera se señala que, sobre una base de $1556829, se esperaba un descuento por salud de $62300 y se aplicó un descuento de $62100, generándose una diferencia que ha sido calificada como evasión de seguridad social; de igual forma, en la segunda incidencia, se observa que sobre la misma base de $1556829, el descuento por pensión debió ser de $62300, pero se aplicó $62100, marcando nuevamente una diferencia similar bajo la misma alerta por evasión en la aplicación del 4% correcto. Esta situación requiere una atención detallada para validar el correcto cumplimiento de las normativas vigentes sobre el cálculo de los descuentos en salud y pensión para el retroactivo de pago.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 9299452: se detectaron dos inconsistencias en el proceso de liquidación del retroactivo. En el primer caso se identificó una incongruencia en el descuento aplicado al componente de salud, ya que con base en $1160328 se esperaba un descuento de salud de $46400, pero se descontaron $46200; la alerta señala que no se aplicó el 4% correcto sobre la base salarial correspondiente. De manera similar, se encontró un error en el descuento del aporte a pensión en la misma base, donde se esperaba un descuento de $46400 y se aplicaron $46200, con una alerta que vuelve a indicar la inadecuada aplicación del 4% sobre dicha base. Se recomienda una revisión detallada de ambos aspectos para asegurar el cumplimiento de la normativa vigente en el régimen de seguridad social del sector público.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 22790645: Se detectaron inconsistencias en el cálculo de descuentos de seguridad social en el pago retroactivo. En el caso del componente de salud, se advierte que para una base de $1160328, el descuento esperado era de $46400, mientras que se aplicó $46200, situación que se señala como evasión de seguridad social por no aplicar el 4% correcto sobre la base salarial. De igual forma, en el componente de pensión se presenta la misma discrepancia, ya que para la misma base de $1160328 se esperaba un descuento de $46400 y se descontaron $46200, lo cual confirma la necesidad de revisar dicho proceso.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 30765841: Se detectó una inconsistencia en el cálculo de los descuentos de seguridad social aplicados al retroactivo, específicamente en salud y en pensión. Se ha informado que para una base de $1160327 se esperaba un descuento de $46400 tanto para salud como para pensión, pero los montos efectivamente descontados fueron de $46200 en cada uno de estos conceptos. Esta discrepancia, que corresponde a una diferencia en el porcentaje de descuento del 4% estipulado sobre la base salarial, se entiende como una situación de evasión menor en el procedimiento establecido y sugiere la necesidad de revisar la aplicación automática para asegurar que se realice el descuento correcto.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 30776693: Durante la revisión de la liquidación del retroactivo se detectaron dos inconsistencias en los descuentos aplicados a la Seguridad Social. En el primer caso se identificó que, sobre una base de $594095, se esperaba un descuento por salud de $23800 y se descontó un monto de $23100, evidenciándose así una diferencia en la aplicación del porcentaje establecido; mientras que en el segundo caso se presentó una situación análoga para el descuento de pensión, con un valor esperado de $23800 y un monto descontado de $23100 sobre la misma base salarial. Estas alertas sugieren una inconsistencia en la aplicación del 4% correspondiente sobre la base salarial del retroactivo, lo cual requiere la revisión y ajuste necesario para cumplir con las normativas vigentes en materia de Seguridad Social en el sector público.
+------------------------------------------------------------
+
+
+>>> PROCESANDO CLIENTE: CVSCORDOBA
+Usando opción 2 (ID: 167)
+Ejecutando auditoría para el calendario 167 | Periodo: 99 | Año: 2026
+Se detectaron 50 incidencias en total.
+Generando reportes de IA para los primeros 10 empleados...
+
+------------------------------------------------------------
+Empleado con cédula 6880503: Se identificó una inconsistencia en el descuento aplicado al retroactivo en relación con la seguridad social, ya que sobre una base salarial de $734550 se esperaba un descuento de salud de $29400, pero se descontó $35900; de igual manera, se presentó una discrepancia en el descuento de pensión con la misma base, donde se esperaba un descuento de $29400 y se descontó $35900. Estas irregularidades indican que no se aplicó el 4% correcto sobre la base salarial estipulada para el retroactivo, aspecto que requiere una revisión detallada del proceso para asegurar el cumplimiento de la normativa vigente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 10777425: Se detectaron inconsistencias en el cálculo del retroactivo en los conceptos de salud y pensión, evidenciadas mediante las diferencias en los descuentos aplicados sobre una base de $1900105, donde se esperaba un descuento de $76.000 tanto para salud como para pensión, pero se descontaron $75.100 en cada uno de estos ítems. Estas situaciones han sido clasificadas como posibles evasiones en el descuento de Seguridad Social, ya que el sistema no aplicó el 4% correcto sobre la base salarial retroactiva. Se recomienda una revisión detallada de los ajustes efectuados para garantizar el cumplimiento normativo.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 10894477: Se detectaron inconsistencias en el descuento aplicado al retroactivo, específicamente en los conceptos de salud y pensión. Por una parte, se identificó una diferencia en la columna de salud indicando que, sobre una base de $3822341, se esperaba un descuento de $152900, pero se descontaron $151400, situación que ha sido señalada como una evasión de Seguridad Social por no aplicar el 4% correcto sobre la base salarial del retroactivo. Por otra, se presentó un caso similar en el concepto de pensión, ya que sobre la misma base de $3822341 se esperaba un descuento de $152900, pero se descontaron $151400, generándose nuevamente una alerta por no aplicar la tarifa estipulada. Ambas incidencias requieren la verificación correspondiente por parte del auditor, sin implicar recalculaciones, sino revisando la consistencia de los montos informados según la base constitucional de la Ley 100.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 11003480: Se identificó una inconsistencia en el descuento aplicado a los aportes para la seguridad social en el cálculo del retroactivo, tanto en salud como en pensión. En salud, se detectó que, sobre una base de $1160328, se esperaba un descuento de $46400 y se descontó $46200, y de igual forma, en pensión, sobre la misma base, se esperaba un descuento de $46400 y se aplicó un descuento de $46200. Esta diferencia en los descuentos refleja que no se aplicó correctamente el 4% correspondiente sobre la base salarial del retroactivo, lo que requiere ser ajustado para cumplir con la normativa establecida.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 11085458: Se detectaron inconsistencias en los descuentos del retroactivo, específicamente en los conceptos de salud y pensión, pudiendo tratarse de un incumplimiento en la aplicación exacta del 4% sobre la base salarial correspondiente al retroactivo. En el caso del descuento de salud se señaló que, para una base de $1675281, el valor esperado era de $67000 mientras que se descontó $66100, lo que ha generado una alerta por posible evasión en la seguridad social. De manera similar, en el descuento de pensión se presentó la misma discrepancia, ya que se esperaba descontar $67000 y se aplicó un valor de $66100 para la misma base de $1675281. La situación requiere la revisión detallada por parte del auditor responsable para corroborar la integridad de los descuentos y confirmar que no se incurre en omisiones o fallas en el proceso de liquidación de retroactivos.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 15019289: Se detectaron inconsistencias en el proceso de descuento de aportes para seguridad social en el retroactivo, presentándose diferencias tanto en el componente de salud como en el de pensión. En el primer caso, se identificó que sobre una base de $1585030 se esperaba un descuento de salud de $63400, mientras que se descontaron $62300, evidenciando una desviación en el porcentaje aplicado; de igual forma, en el segundo caso se constató que, para la misma base de $1585030, el descuento de pensión fue de $62300 en lugar de los $63400 que correspondían. Estas observaciones indican que el proceso de retroactivo no aplicó el 4% correcto sobre los conceptos salariales, por lo que se recomienda una revisión de los procedimientos de cálculo y validación en ambos componentes, garantizando que se cumplan las normas vigentes de seguridad social.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 15041749: Se identificaron inconsistencias en la aplicación de los descuentos de seguridad social en el retroactivo, particularmente en los aportes a salud y pensión. En ambos casos, sobre una base de $542091, se esperaba un descuento de $21700, mientras que se descontó $20100, lo que indica que el cálculo del 4% sobre la base salarial no fue aplicado correctamente. Esta situación, detectada en las incidencias, requiere de la atención para ajustar el procedimiento y asegurar el cumplimiento de lo establecido en la normativa.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 15043804: Se detectó una inconsistencia en el cobro de los descuentos de seguridad social en el retroactivo, donde en la base de $779696 se esperaba descontar $31200 para salud y $31200 para pensión, sin embargo, en ambos casos solo se descontaron $30700. Esta diferencia, que se traduce en una evasión en el cálculo correcto del 4% sobre la base salarial del retroactivo, requiere la revisión y ajuste correspondiente para asegurar que se apliquen correctamente las deducciones legales y se garantice la integridad en el pago de salud y pensión.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 25784852: Se identificó que en el cálculo del retroactivo se presentan inconsistencias en la aplicación de las deducciones de seguridad social correspondientes a salud y pensión. Según la información, sobre una base de $766212 se esperaba que el descuento por salud fuera de $30600, pero se descontaron $30800; de igual manera, para pensión se esperaba un descuento de $30600 y se aplicó el monto de $30800. Esta diferencia en ambos conceptos indica que no se aplicó correctamente el recálculo del 4% sobre la base salarial establecida, lo que repercute en el cumplimiento de la normativa de la Ley 100 en cuanto al retroactivo. Se recomienda una revisión detallada para proceder con la corrección necesaria.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 25799882: Se detectó que en el proceso de retroactivo se presentaron inconsistencias en los descuentos de seguridad social relacionados con la salud y la pensión. Específicamente, para ambos conceptos se utilizó una base salarial de $1901213, sobre la cual se esperaba un descuento de $76000, pero se aplicó un monto de $75200, generándose una alerta por evasión de seguridad social al no descontarse el 4% exacto correspondiente al pago retroactivo. Esta situación requiere revisar cómo se está aplicando el porcentaje legalmente establecido, aunque se aclara que dicha diferencia ya ha sido registrada en el sistema automatizado para efectos de verificación.
+------------------------------------------------------------
+
+
+>>> PROCESANDO CLIENTE: GUAJIRA
+Usando ID 848 (Opción 3)
+Ejecutando auditoría para el calendario 848 | Periodo: 99 | Año: 2026
+Se detectaron 6 incidencias en total.
+Generando reportes de IA para los primeros 3 empleados...
+
+------------------------------------------------------------
+Empleado con cédula 40800099: Se identificaron inconsistencias en el cobro de salud y pensión en el proceso de liquidación del retroactivo. En el caso del descuento de salud, se reportó que sobre una base de $1204573 se esperaba un descuento de $48200, pero se aplicó un descuento de $47600, generando una alerta por evasión en el cobro del 4% correcto sobre la base salarial. De igual forma, para el descuento de pensión se observó que sobre la misma base de $1204573 se tenía previsto un descuento de $48200 y se descontaron $47600, lo que también produjo una alerta por evasión de la contribución exacta esperada. Se recomienda una revisión detallada para ajustar estos valores conforme a la normativa vigente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 40930893: Se detectó una inconsistencia en el cobro de contribuciones al sistema de seguridad social en el retroactivo presentado. En el análisis se evidenció que, para la base salarial de $1873597, el descuento correspondiente a salud era de $75000, pero se aplicó un descuento de $72000; similar situación se presentó para pensión, donde se esperaba descontar $75000 y se aplicaron $72000. Esta discrepancia coincide con los indicativos de no haber aplicado correctamente el 4% sobre la base salarial del retroactivo, lo cual podría generar un incumplimiento en el aporte obligatorio de seguridad social. Se recomienda revisar a detalle estos descuentos para asegurar la correcta aplicación de las normativas vigentes, sin que estos ajustes impliquen una evasión deliberada.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 1065002497: Se identificó una inconsistencia en el descuento aplicado a salud, ya que sobre una base de $818881 se esperaba un descuento correcto de $32800 y se descontó únicamente $26100, lo que evidencia que no se aplicó el 4% requerido sobre la parte salarial del retroactivo. De igual forma, se detectó una inconsistencia en el descuento de pensión: sobre la misma base de $818881 se esperaba un valor de $32800, pero se aplicó solo un descuento de $26100. Ambas irregularidades coinciden con alertas de evasión en la seguridad social por no aplicar el porcentaje establecido, por lo que se recomienda una verificación puntual de estos descuentos en el contexto del retroactivo.
+------------------------------------------------------------
+
+
+>>> PROCESANDO CLIENTE: SOACHA
+No se encontraron calendarios para el cliente SOACHA.
+
+>>> PROCESANDO CLIENTE: CORPOCESAR
+Aviso: Solo una opción disponible, usando opción 1 (ID: 158)
+Ejecutando auditoría para el calendario 158 | Periodo: 99 | Año: 2026
+Se detectaron 53 incidencias en total.
+Generando reportes de IA para los primeros 10 empleados...
+
+------------------------------------------------------------
+Empleado con cédula 6688948: Se identificaron inconsistencias en el descuento de aportes de seguridad social en el proceso de retroactivo, tanto en el componente de salud como en el de pensión. En el caso de salud se reportó una base de $1372845, para la cual se esperaba un descuento de $54900, pero se descontó un valor de $89700; de igual forma, para la pensión se esperaba un descuento de $54900 sobre la misma base y se aplicó un descuento de $89700. Dichas diferencias en el cálculo del 4% sobre los conceptos salariales del retroactivo indican que no se aplicó el porcentaje correcto, lo cual requiere una revisión puntual para ajustar los descuentos tales como lo estipula la normativa vigente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 6688994: Se detectaron inconsistencias en el procesamiento del retroactivo del empleado, evidenciándose diferencias en los descuentos aplicados tanto en salud como en pensión. En el caso del descuento de salud, se reportó que, sobre una base de $396242, se esperaba un descuento de $15800, pero se descontó $21900, lo cual indica que no se aplicó correctamente el porcentaje establecido sobre la base salarial retroactiva. De manera similar, en lo que respecta al descuento de pensión, sobre la misma base de $396242 se tenía prevista una deducción de $15800, pero se descontó $21900, presentándose una situación análoga en ambos casos. Estas observaciones señalan una posible evasión en la aplicación de los porcentajes correctos para la seguridad social en el cálculo del retroactivo, motivo por el cual se recomienda una revisión detallada para ajustar los valores a lo estipulado en la normativa vigente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 7571324: Se detectaron dos inconsistencias en la liquidación del retroactivo del empleado, relacionadas con los descuentos de seguridad social para salud y pensión. En el caso de salud, se reportó que sobre la base de $986748 se aplicó un descuento de $58200 cuando, de acuerdo con la normativa, se esperaba un descuento de $39500, lo que indica que no se aplicó el 4% correcto sobre el concepto puramente salarial. De manera similar, se evidenció que en el apartado de pensión se presentó la misma diferencia, con un descuento de $58200 en lugar de los $39500 previstos sobre la misma base. Estas situaciones requieren una revisión detallada para corregir los errores en la aplicación de los porcentajes establecidos y asegurar el cumplimiento de la normativa de seguridad social en el pago retroactivo.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 12643913: Tras el análisis del retroactivo se identificaron dos inconsistencias en los descuentos correspondientes a la seguridad social. En el primer caso, se evidenció que en el cálculo del descuento por salud, a partir de una base de $735788 se esperaba un descuento de $29400, pero se descontaron $25400, lo que configura una inexactitud en la aplicación del 4% sobre la base salarial del retroactivo. De igual manera, se detectó que en el caso del descuento para pensión, con la misma base de $735788, se esperaba un descuento de $29400 y se aplicaron únicamente $25400, confirmándose la inconsistencia en la liquidación del descuento del 4% correspondiente. Estas discrepancias en el cobro de seguridad social exigen revisar el proceso de cálculo para garantizar el cumplimiento exacto de la normativa vigente.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 12644443: Durante la revisión del pago retroactivo se detectaron dos inconsistencias relacionadas con los descuentos de seguridad social. En primer lugar, se identificó una diferencia en el descuento de salud, dado que sobre una base de $577293 se esperaba un monto de $23100, pero se descontaron $12700. De igual forma, se identificó una inconsistencia en el descuento de pensión, en la que, sobre la misma base de $577293, se tenía previsto un descuento de $23100, resultando nuevamente descontados $12700. Ambas situaciones hacen referencia a un error en la aplicación del 4% sobre la base salarial del retroactivo, razón por la cual se requiere una revisión detallada para asegurar el cumplimiento de las normativas vigentes.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 12646622: Se ha identificado una inconsistencia en el retroactivo del empleado, evidenciándose discrepancias tanto en el descuento de salud como en el de pensión. En el primer caso, se observó que, sobre una base de $356224, se esperaba un descuento de salud de $14200, pero se descontaron $24500, lo que indica un error en la aplicación del porcentaje correspondiente en el cobro de seguridad social. De igual forma, en el segundo caso, sobre la misma base de $356224, se esperaba que el descuento de pensión fuera de $14200, mientras que se descontaron $24500, presentándose así una situación similar. Estas diferencias requieren atención para ajustar el cálculo retroactivo y asegurar el cumplimiento de las normativas de seguridad social.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 13278492: Se detectaron inconsistencias en el cobro de salud y pensión en el retroactivo. En el concepto de salud se observó que, sobre una base de $273105, se esperaba un descuento de $10900, mientras que el monto descontado fue de $0. De igual forma, para el concepto de pensión se esperaba un descuento de $10900 sobre la misma base de $273105, sin que se realizara ninguna deducción, registrándose nuevamente $0. Estas inconsistencias indican que no se aplicó el descuento correcto del 4% sobre la base salarial del retroactivo, lo que constituye una evasión en el aporte a la seguridad social.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 18918219: se identificó en la liquidación del retroactivo una inconsistencia en el cobro del descuento de salud y otra en el cobro del descuento de pensión; en ambos casos, con base en $356224, se esperaba un descuento de $14200 en cada concepto, pero se aplicaron descuentos de $21200, lo cual generó la alerta por no aplicar el 4% correcto sobre la base salarial del retroactivo. Esta situación indica que, en el proceso de cálculo del aumento decretado, no se ha aplicado la metodología correcta para el descuento de aportes a seguridad social, razón por la cual se recomienda una revisión exhaustiva del procedimiento para corroborar el cumplimiento de la normativa.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 18937287: Se identificó una inconsistencia en el cobro de salud, en el que sobre una base de $1037882 se esperaba un descuento de $41500, sin embargo se aplicó un descuento de $71100; de igual manera, se detectó una discrepancia en el descuento de pensión sobre la misma base, ya que se requería descontar $41500 y se descontaron $71100, situación que evidencia una desviación en los porcentajes aplicados para la cotización de la seguridad social en salud y pensión de acuerdo con lo establecido en la Ley 100.
+------------------------------------------------------------
+
+------------------------------------------------------------
+Empleado con cédula 49607100: Se identificaron dos incidencias en el retroactivo del empleado. En la primera situación, se detectó una inconsistencia en el cobro de salud, en la que sobre una base de $694692 se esperaba un descuento de $27800, pero se descontaron $38400, situación que evidencia la aplicación incorrecta del 4% conforme a la normativa establecida para los conceptos puramente salariales. De manera similar, se detectó una inconsistencia en el cobro de pensión, dado que sobre la misma base de $694692 el descuento correcto debiera ser de $27800, pero nuevamente se aplicaron $38400. Ambas incidencias fueron acompañadas por una alerta informativa que señala una vulneración en la aplicación exacta de la deducción del 4% sobre el pago retroactivo. Se recomienda la revisión detallada de estas diferencias por parte del auditor correspondiente para confirmar el cumplimiento de las directrices de la Ley 100.
+------------------------------------------------------------
+
+
+>>> PROCESANDO CLIENTE: CODECHOCO
+No se encontraron calendarios para el cliente CODECHOCO.
+
+--- FIN DEL INFORME ---
